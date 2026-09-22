@@ -1,12 +1,35 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import AudienceToggle from '../../components/AudienceToggle/AudienceToggle'
 import PackageCard from '../../components/PackageCard/PackageCard'
 import SectionHead from '../../components/SectionHead/SectionHead'
-import { packageComparison, packages, packagesSection } from '../../data/content'
+import AppLink from '../../components/AppLink/AppLink'
+import { PLACEHOLDER_PATH, packageComparison, packages, packagesSection } from '../../data/content'
 import styles from './Packages.module.css'
+
+/** Cella tartalma: logikai értéknél pipa/gondolatjel, olvasható szöveggel. */
+function ComparisonCell({ value }) {
+  if (typeof value !== 'boolean') return value
+
+  return value ? (
+    <>
+      <span className={styles.check} aria-hidden="true">
+        ✓
+      </span>
+      <span className="visually-hidden">Tartalmazza</span>
+    </>
+  ) : (
+    <>
+      <span className={styles.dash} aria-hidden="true">
+        —
+      </span>
+      <span className="visually-hidden">Nem tartalmazza</span>
+    </>
+  )
+}
 
 export default function Packages({ audience, onAudienceChange }) {
   const [showComparison, setShowComparison] = useState(false)
+  const footnotesId = useId()
   const copy = packagesSection[audience]
   const packageList = packages[audience] || packages.business
   const isPrivate = audience === 'private'
@@ -22,6 +45,7 @@ export default function Packages({ audience, onAudienceChange }) {
         <ul
           className={`${styles.cards} ${isPrivate ? styles.cardsThree : ''}`}
           aria-label="Csomagok"
+          aria-describedby={copy.footnotes ? footnotesId : undefined}
         >
           {packageList.map((pkg) => (
             <li key={pkg.name} className={styles.cardItem}>
@@ -31,13 +55,13 @@ export default function Packages({ audience, onAudienceChange }) {
         </ul>
 
         {copy.footnotes && (
-          <div className={styles.footnotes}>
+          <ul className={styles.footnotes} id={footnotesId}>
             {copy.footnotes.map((fn) => (
-              <p key={fn} className={`t-caption ${styles.footnote}`}>
+              <li key={fn} className={`t-caption ${styles.footnote}`}>
                 {fn}
-              </p>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
 
         <div className={styles.compare}>
@@ -47,66 +71,54 @@ export default function Packages({ audience, onAudienceChange }) {
               className={styles.compareButton}
               onClick={() => setShowComparison(!showComparison)}
               aria-expanded={showComparison}
+              aria-controls="osszehasonlitas"
             >
               <span>Csomagok összehasonlítása</span>
               <span aria-hidden="true">{showComparison ? '▲' : '▼'}</span>
             </button>
           ) : (
-            <a href="#osszehasonlitas" className={`t-button ${styles.compareLink}`}>
+            <AppLink href={PLACEHOLDER_PATH} className={`t-button ${styles.compareLink}`}>
               Csomagok részletes összehasonlítása →
-            </a>
+            </AppLink>
           )}
           <p className={`t-body-s ${styles.note}`}>{copy.note}</p>
         </div>
 
         {isPrivate && showComparison && (
-          <div className={styles.tableWrapper} id="osszehasonlitas">
+          <div
+            className={styles.tableWrapper}
+            id="osszehasonlitas"
+            role="region"
+            aria-label="Csomagok összehasonlító táblázata"
+            tabIndex={0}
+          >
             <table className={styles.table}>
+              <caption className="visually-hidden">
+                Az egyéni egészségbiztosítási csomagok szolgáltatásainak összehasonlítása
+              </caption>
               <thead>
                 <tr>
                   {packageComparison.columns.map((col) => (
-                    <th key={col.key}>{col.label}</th>
+                    <th key={col.key} scope="col">
+                      {col.label}
+                    </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {packageComparison.rows.map((row) => (
                   <tr key={row.feature}>
+                    <th scope="row" className={styles.rowHeader}>
+                      {row.feature}
+                    </th>
                     <td>
-                      <strong>{row.feature}</strong>
+                      <ComparisonCell value={row.classic} />
                     </td>
                     <td>
-                      {typeof row.classic === 'boolean' ? (
-                        row.classic ? (
-                          <span className={styles.check}>✓</span>
-                        ) : (
-                          <span className={styles.dash}>—</span>
-                        )
-                      ) : (
-                        row.classic
-                      )}
+                      <ComparisonCell value={row.medium} />
                     </td>
                     <td>
-                      {typeof row.medium === 'boolean' ? (
-                        row.medium ? (
-                          <span className={styles.check}>✓</span>
-                        ) : (
-                          <span className={styles.dash}>—</span>
-                        )
-                      ) : (
-                        row.medium
-                      )}
-                    </td>
-                    <td>
-                      {typeof row.plus === 'boolean' ? (
-                        row.plus ? (
-                          <span className={styles.check}>✓</span>
-                        ) : (
-                          <span className={styles.dash}>—</span>
-                        )
-                      ) : (
-                        row.plus
-                      )}
+                      <ComparisonCell value={row.plus} />
                     </td>
                   </tr>
                 ))}

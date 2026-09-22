@@ -1,0 +1,35 @@
+.page {
+  background: var(--neutral-50);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  min-height: 56vh;
+  padding-block: var(--section-py);
+}
+
+.eyebrow {
+  color: var(--primary-700);
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 720px;
+  color: var(--neutral-900);
+}
+
+/* A címsor csak programozottan kap fókuszt oldalváltáskor, nem kell rá keret. */
+.title:focus,
+.title:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.text {
+  max-width: 620px;
+  color: var(--neutral-600);
+}

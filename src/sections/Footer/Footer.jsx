@@ -1,3 +1,4 @@
+import AppLink from '../../components/AppLink/AppLink'
 import { contacts, footer } from '../../data/content'
 import styles from './Footer.module.css'
 
@@ -22,13 +23,13 @@ export default function Footer() {
               <ul className={styles.links}>
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <AppLink
                       href={link.href}
+                      external={link.external}
                       className={`t-body-s ${styles.link}`}
-                      {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
                     >
                       {link.label}
-                    </a>
+                    </AppLink>
                   </li>
                 ))}
               </ul>
@@ -40,10 +41,10 @@ export default function Footer() {
           <p>{footer.copyright}</p>
           <ul className={styles.legal}>
             {footer.legal.map((item) => (
-              <li key={item}>
-                <a href="#" className={styles.legalLink}>
-                  {item}
-                </a>
+              <li key={item.label}>
+                <AppLink href={item.href} className={styles.legalLink}>
+                  {item.label}
+                </AppLink>
               </li>
             ))}
           </ul>

@@ -7,6 +7,7 @@
   border: 1px solid var(--neutral-200);
   border-radius: var(--radius-pill);
   flex-shrink: 0;
+  max-width: 100%;
 }
 
 .option {
@@ -35,8 +36,35 @@
   color: var(--neutral-0);
 }
 
-@media (max-width: 380px) {
+/* 420px alatt a két gomb egymás alá kerül, hogy ne csússzon ki a képernyőről */
+@media (max-width: 420px) {
+  .toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    border-radius: 28px;
+  }
+
   .option {
     padding-inline: 18px;
+    white-space: normal;
+  }
+}
+
+/* Windows kontrasztos témában a háttérszín eltűnik, ezért kerettel is jelezzük,
+   melyik célcsoport az aktív. */
+@media (forced-colors: active) {
+  .option {
+    border: 2px solid transparent;
+    forced-color-adjust: none;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .active {
+    background: Highlight;
+    color: HighlightText;
+    border-color: CanvasText;
   }
 }

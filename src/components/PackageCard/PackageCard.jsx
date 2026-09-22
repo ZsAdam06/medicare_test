@@ -1,4 +1,5 @@
 import Button from '../Button/Button'
+import { PLACEHOLDER_PATH } from '../../data/content'
 import styles from './PackageCard.module.css'
 
 /**
@@ -16,7 +17,7 @@ export default function PackageCard({
   period,
   limit,
   ctaLabel = 'Részletek',
-  href = '#',
+  href = PLACEHOLDER_PATH,
 }) {
   return (
     <article

@@ -30,6 +30,15 @@ src/
 Stílusok: CSS Modules + CSS custom property tokenek, külső UI könyvtár nélkül.
 Betűtípus: Plus Jakarta Sans (Google Fonts).
 
+## Oldalak
+
+- `/` – nyitóoldal
+- minden más útvonal (`/keszul`, elgépelt cím) – „Ez az oldal még nem készült el” helykitöltő oldal,
+  fejléccel és lábléccel. A demóban még el nem készült aloldalak linkjei ide mutatnak.
+
+Kliensoldali routing (react-router), ezért statikus kiszolgálón minden útvonalat az
+`index.html`-re kell irányítani (a `vite dev` és a `vite preview` ezt magától megteszi).
+
 ## Viselkedés
 
 - **Célcsoport-váltó** (Cégeknek / Magánszemélyeknek) – a hero és a csomagok szekció
@@ -38,3 +47,17 @@ Betűtípus: Plus Jakarta Sans (Google Fonts).
 - **Mobil menü** – hamburger gomb 1024px alatt, Esc-re záródik.
 - **Csomagkártyák** – 1200px alatt vízszintesen görgethető, snap-elő sor.
 - `prefers-reduced-motion` esetén az animációk kikapcsolnak.
+
+## Akadálymentesség
+
+WCAG 2.2 AA szempontból ellenőrizve (axe-core + kézi teszt), mindkét célcsoport-nézetben
+és a helykitöltő oldalon is nulla hibával.
+
+- „Ugrás a tartalomra” link, fókuszra jelenik meg
+- kettős (sötét + fehér) fókuszkeret, hogy világos és sötét háttéren is 3:1 fölött legyen
+- a célcsoport-váltás `aria-live` üzenetben is megjelenik a képernyőolvasónak
+- az összehasonlító táblázat: caption, `scope` fejlécek, sorfejlécek, a ✓ és — jelek
+  mellett rejtett „Tartalmazza” / „Nem tartalmazza” szöveg, billentyűzettel görgethető doboz
+- az új lapon nyíló linkek rejtett „(új lapon nyílik meg)” szöveget kapnak
+- Windows kontrasztos témához (`forced-colors`) külön szabályok
+- 320px-es szélességen sincs vízszintes görgetés

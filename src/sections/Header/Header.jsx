@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import Button from '../../components/Button/Button'
 import Icon from '../../components/Icon/Icon'
+import AppLink from '../../components/AppLink/AppLink'
 import logo from '../../assets/brand/logo.png'
 import { contacts, nav, telHref } from '../../data/content'
 import styles from './Header.module.css'
 
 function UtilityBar() {
   return (
-    <div className={styles.utility}>
+    <aside className={styles.utility} aria-label="Tájékoztatás és elérhetőségek">
       <div className={`container ${styles.utilityInner}`}>
         <p className={`t-caption ${styles.disclaimer}`}>Koncepció demó – nem hivatalos oldal</p>
         <ul className={`t-body-s ${styles.contacts}`}>
@@ -24,7 +25,7 @@ function UtilityBar() {
           </li>
         </ul>
       </div>
-    </div>
+    </aside>
   )
 }
 
@@ -50,28 +51,27 @@ export default function Header() {
       <UtilityBar />
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
-          <a href="#top" className={styles.logo} aria-label="Medicare Biztosító – kezdőlap">
+          <AppLink href="/" className={styles.logo} aria-label="Medicare Biztosító – kezdőlap">
             <img src={logo} alt="" width="219" height="32" />
-          </a>
+          </AppLink>
 
           <nav className={styles.nav} aria-label="Fő navigáció">
             <ul className={styles.navList}>
               {nav.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className={styles.navLink}>
+                  <AppLink href={item.href} className={styles.navLink}>
                     {item.label}
-                    {item.hasMenu && <span aria-hidden="true"> ▾</span>}
-                  </a>
+                  </AppLink>
                 </li>
               ))}
             </ul>
           </nav>
 
           <div className={styles.actions}>
-            <a href="#ellatas" className={styles.bookingLink}>
+            <AppLink href="/#ellatas" className={styles.bookingLink}>
               Online időpontfoglalás
-            </a>
-            <Button href="#ajanlat" size="M">
+            </AppLink>
+            <Button href="/#ajanlat" size="M">
               Ajánlatot kérek
             </Button>
           </div>
@@ -97,18 +97,18 @@ export default function Header() {
             <ul className={styles.mobileList}>
               {nav.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className={styles.mobileLink} onClick={closeMenu}>
+                  <AppLink href={item.href} className={styles.mobileLink} onClick={closeMenu}>
                     {item.label}
-                  </a>
+                  </AppLink>
                 </li>
               ))}
               <li>
-                <a href="#ellatas" className={styles.mobileLinkAccent} onClick={closeMenu}>
+                <AppLink href="/#ellatas" className={styles.mobileLinkAccent} onClick={closeMenu}>
                   Online időpontfoglalás
-                </a>
+                </AppLink>
               </li>
             </ul>
-            <Button href="#ajanlat" fullWidth onClick={closeMenu}>
+            <Button href="/#ajanlat" fullWidth onClick={closeMenu}>
               Ajánlatot kérek
             </Button>
           </nav>
