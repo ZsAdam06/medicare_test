@@ -18,12 +18,14 @@ export const contacts = {
 export const telHref = (phone) => `tel:${phone.replace(/\s/g, '')}`
 
 // Minden menüpont saját szekcióra visz, nincs két azonos célú elem.
+// Csak a horgonyt tároljuk: az útvonalat a fejléc teszi elé az aktuális
+// célcsoport szerint, hogy a menü ne dobja vissza a látogatót a céges nézetbe.
 export const nav = [
-  { label: 'Csomagok', href: '/#csomagok' },
-  { label: 'Miért a Medicare?', href: '/#miert' },
-  { label: 'Szolgáltatások', href: '/#szolgaltatasok' },
-  { label: 'GYIK', href: '/#gyik' },
-  { label: 'Kapcsolat', href: '/#kapcsolat' },
+  { label: 'Csomagok', hash: '#csomagok' },
+  { label: 'Miért a Medicare?', hash: '#miert' },
+  { label: 'Szolgáltatások', hash: '#szolgaltatasok' },
+  { label: 'GYIK', hash: '#gyik' },
+  { label: 'Kapcsolat', hash: '#kapcsolat' },
 ]
 
 // Tartalom cégeknek (business) és magánszemélyeknek (private)
