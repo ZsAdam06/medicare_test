@@ -1,30 +1,23 @@
-import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import ScrollManager from './components/ScrollManager/ScrollManager'
 import Header from './sections/Header/Header'
-import Hero from './sections/Hero/Hero'
-import Packages from './sections/Packages/Packages'
-import WhyMedicare from './sections/WhyMedicare/WhyMedicare'
-import HowItWorks from './sections/HowItWorks/HowItWorks'
-import Ecosystem from './sections/Ecosystem/Ecosystem'
-import Faq from './sections/Faq/Faq'
-import Cta from './sections/Cta/Cta'
 import Footer from './sections/Footer/Footer'
+import Landing from './pages/Landing'
+import NotReady from './pages/NotReady'
+import styles from './App.module.css'
 
 export default function App() {
-  // A célcsoport-váltó a hero és a csomagok szekció tartalmát együtt váltja.
-  const [audience, setAudience] = useState('business')
-
   return (
     <div id="top">
+      <ScrollManager />
+      <a href="#fotartalom" className={styles.skipLink}>
+        Ugrás a tartalomra
+      </a>
       <Header />
-      <main>
-        <Hero audience={audience} onAudienceChange={setAudience} />
-        <Packages audience={audience} onAudienceChange={setAudience} />
-        <WhyMedicare audience={audience} />
-        <HowItWorks audience={audience} />
-        <Ecosystem />
-        <Faq audience={audience} />
-        <Cta audience={audience} />
-      </main>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="*" element={<NotReady />} />
+      </Routes>
       <Footer />
     </div>
   )

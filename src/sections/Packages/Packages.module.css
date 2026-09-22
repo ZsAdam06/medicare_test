@@ -114,6 +114,13 @@
   font-size: 15px;
 }
 
+/* Sorfejléc: szemantikailag th, de a sorok világos hátterét viszi tovább. */
+.rowHeader {
+  background: var(--neutral-0);
+  color: var(--neutral-900);
+  text-align: left;
+}
+
 .table th:not(:first-child),
 .table td:not(:first-child) {
   text-align: center;

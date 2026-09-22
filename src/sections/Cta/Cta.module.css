@@ -10,7 +10,9 @@
   gap: 32px;
   padding: 56px 64px;
   border-radius: 32px;
-  background: linear-gradient(90deg, var(--primary-700) 0%, var(--primary-500) 100%);
+  /* A terv primary-500-zel zár, de azon a primary-100 szöveg csak 3,8:1 –
+     primary-600-zal 4,8:1, így teljesül a WCAG AA. */
+  background: linear-gradient(90deg, var(--primary-700) 0%, var(--primary-600) 100%);
 }
 
 .copy {

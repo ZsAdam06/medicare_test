@@ -1,3 +1,4 @@
+import AppLink from '../AppLink/AppLink'
 import styles from './Button.module.css'
 
 /**
@@ -15,6 +16,7 @@ export default function Button({
   fullWidth = false,
   arrow = true,
   href,
+  external = false,
   className = '',
   ...rest
 }) {
@@ -42,9 +44,9 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes} {...rest}>
+      <AppLink href={href} external={external} className={classes} {...rest}>
         {content}
-      </a>
+      </AppLink>
     )
   }
 

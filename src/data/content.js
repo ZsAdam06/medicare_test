@@ -6,6 +6,9 @@ import mento from '../assets/services/4-mento.jpg'
 import fogaszat from '../assets/services/5-fogaszat.jpg'
 import ugyelet from '../assets/services/6-ugyeleti-ambulancia.jpg'
 
+// A koncepció demóban még el nem készült aloldalak helykitöltő oldala.
+export const PLACEHOLDER_PATH = '/keszul'
+
 export const contacts = {
   service: { label: 'Ügyintézés', phone: '+36 1 887 3881' },
   booking: { label: 'Időpontfoglalás', phone: '+36 1 465 3100' },
@@ -15,10 +18,10 @@ export const contacts = {
 export const telHref = (phone) => `tel:${phone.replace(/\s/g, '')}`
 
 export const nav = [
-  { label: 'Egészségbiztosítás', href: '#csomagok', hasMenu: true },
-  { label: 'A biztosítóról', href: '#miert' },
-  { label: 'Miért a Medicare?', href: '#miert' },
-  { label: 'Kapcsolat', href: '#kapcsolat' },
+  { label: 'Egészségbiztosítás', href: '/#csomagok' },
+  { label: 'A biztosítóról', href: '/#miert' },
+  { label: 'Miért a Medicare?', href: '/#miert' },
+  { label: 'Kapcsolat', href: '/#kapcsolat' },
 ]
 
 // Tartalom cégeknek (business) és magánszemélyeknek (private)
@@ -494,7 +497,7 @@ export const footer = {
     {
       title: 'Egészségbiztosítás',
       links: ['Magánszemélyeknek', 'Vállalati csomagok', 'Kiegészítő csomagok', 'Ajánlatkérés'].map(
-        (label) => ({ label, href: '#' }),
+        (label) => ({ label, href: PLACEHOLDER_PATH }),
       ),
     },
     {
@@ -504,7 +507,7 @@ export const footer = {
         'Panaszkezelési tájékoztató',
         'Kárrendezési tájékoztató',
         'Közzétételek',
-      ].map((label) => ({ label, href: '#' })),
+      ].map((label) => ({ label, href: PLACEHOLDER_PATH })),
     },
     {
       title: 'További weboldalaink',
@@ -518,5 +521,10 @@ export const footer = {
     },
   ],
   copyright: '© 2026 Medicare Biztosító Zrt. · Koncepció demó, nem hivatalos oldal',
-  legal: ['Adatkezelési tájékoztató', 'Adathalászati tájékoztató', 'Jogi nyilatkozat', 'Pénzügyi navigátor'],
+  legal: [
+    'Adatkezelési tájékoztató',
+    'Adathalászati tájékoztató',
+    'Jogi nyilatkozat',
+    'Pénzügyi navigátor',
+  ].map((label) => ({ label, href: PLACEHOLDER_PATH })),
 }

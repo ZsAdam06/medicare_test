@@ -77,6 +77,13 @@
 .legal {
   display: flex;
   flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+/* Tördeléskor is meglegyen a 24px-es célterület-magasság (WCAG 2.5.8) */
+.legalLink {
+  display: inline-block;
+  padding-block: 4px;
 }
 
 .legal li:not(:last-child)::after {

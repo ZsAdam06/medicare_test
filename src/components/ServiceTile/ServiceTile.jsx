@@ -12,6 +12,7 @@ export default function ServiceTile({ title, site, href, image }) {
       <span className={`t-h4 ${styles.title}`}>{title}</span>
       <span className={`t-body-s ${styles.site}`}>
         {site} <span aria-hidden="true">→</span>
+        <span className="visually-hidden"> (új lapon nyílik meg)</span>
       </span>
     </a>
   )

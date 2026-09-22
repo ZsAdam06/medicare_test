@@ -61,9 +61,18 @@ button {
   color: inherit;
 }
 
+/* Kettős fókuszkeret: a sötét vonal világos, a fehér glória sötét és kék
+   háttéren látszik, így minden szekcióban megvan a 3:1 kontraszt. */
 :focus-visible {
-  outline: 3px solid var(--primary-400);
+  outline: 3px solid var(--primary-900);
   outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgb(255 255 255 / 0.95);
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
 }
 
 .container {
