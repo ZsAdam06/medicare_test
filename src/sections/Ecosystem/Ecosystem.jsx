@@ -5,7 +5,7 @@ import styles from './Ecosystem.module.css'
 
 export default function Ecosystem() {
   return (
-    <section className={styles.section} aria-labelledby="ecosystem-title">
+    <section id="szolgaltatasok" className={styles.section} aria-labelledby="ecosystem-title">
       <div className={`container ${styles.inner}`}>
         <SectionHead
           id="ecosystem-title"

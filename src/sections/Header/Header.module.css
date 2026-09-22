@@ -138,7 +138,8 @@
   display: none;
 }
 
-@media (max-width: 1279px) {
+/* 1400px alatt a menü és a gomb mellé már nem fér ki a foglalási link */
+@media (max-width: 1400px) {
   .bookingLink {
     display: none;
   }
