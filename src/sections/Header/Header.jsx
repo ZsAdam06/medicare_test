@@ -79,6 +79,10 @@ export default function Header() {
   const navigate = useNavigate()
   const audience = audienceFromPath(pathname)
 
+  // A menüpontok az éppen nézett célcsoport oldalán belül ugranak a szekciókra,
+  // így a menü nem dobja vissza a látogatót a céges nézetbe.
+  const sectionHref = (hash) => `${AUDIENCE_PATHS[audience]}${hash}`
+
   const changeAudience = (next) => {
     if (next === audience && isAudiencePath(pathname)) return
     navigate(AUDIENCE_PATHS[next], { preventScrollReset: true })
@@ -111,7 +115,7 @@ export default function Header() {
             <ul className={styles.navList}>
               {nav.map((item) => (
                 <li key={item.label}>
-                  <AppLink href={item.href} className={styles.navLink}>
+                  <AppLink href={sectionHref(item.hash)} className={styles.navLink}>
                     {item.label}
                   </AppLink>
                 </li>
@@ -120,7 +124,7 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
-            <AppLink href="/#ellatas" className={styles.bookingLink}>
+            <AppLink href={sectionHref('#ellatas')} className={styles.bookingLink}>
               Online időpontfoglalás
             </AppLink>
             <Button size="M" onClick={() => openQuote({ audience })}>
@@ -149,13 +153,13 @@ export default function Header() {
             <ul className={styles.mobileList}>
               {nav.map((item) => (
                 <li key={item.label}>
-                  <AppLink href={item.href} className={styles.mobileLink} onClick={closeMenu}>
+                  <AppLink href={sectionHref(item.hash)} className={styles.mobileLink} onClick={closeMenu}>
                     {item.label}
                   </AppLink>
                 </li>
               ))}
               <li>
-                <AppLink href="/#ellatas" className={styles.mobileLinkAccent} onClick={closeMenu}>
+                <AppLink href={sectionHref('#ellatas')} className={styles.mobileLinkAccent} onClick={closeMenu}>
                   Online időpontfoglalás
                 </AppLink>
               </li>

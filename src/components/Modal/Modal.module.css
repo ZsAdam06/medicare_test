@@ -14,13 +14,18 @@
 }
 
 .dialog[open] {
-  animation: appear 0.22s ease both;
+  animation: appear 0.22s ease;
 }
 
 @keyframes appear {
   from {
     opacity: 0;
     transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
