@@ -3,8 +3,9 @@ import FaqItem from '../../components/FaqItem/FaqItem'
 import { contacts, faqs, telHref } from '../../data/content'
 import styles from './Faq.module.css'
 
-export default function Faq() {
+export default function Faq({ audience = 'business' }) {
   const [openIndex, setOpenIndex] = useState(0)
+  const faqList = faqs[audience] || faqs.business
 
   return (
     <section className={styles.section} aria-labelledby="faq-title">
@@ -23,7 +24,7 @@ export default function Faq() {
         </div>
 
         <div className={styles.items}>
-          {faqs.map((faq, i) => (
+          {faqList.map((faq, i) => (
             <FaqItem
               key={faq.question}
               {...faq}

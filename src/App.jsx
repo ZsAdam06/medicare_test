@@ -19,11 +19,11 @@ export default function App() {
       <main>
         <Hero audience={audience} onAudienceChange={setAudience} />
         <Packages audience={audience} onAudienceChange={setAudience} />
-        <WhyMedicare />
-        <HowItWorks />
+        <WhyMedicare audience={audience} />
+        <HowItWorks audience={audience} />
         <Ecosystem />
-        <Faq />
-        <Cta />
+        <Faq audience={audience} />
+        <Cta audience={audience} />
       </main>
       <Footer />
     </div>

@@ -26,11 +26,31 @@
   gap: 16px;
 }
 
+.cardsThree {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1040px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.footnotes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: -16px;
+  max-width: 1040px;
+}
+
+.footnote {
+  color: var(--neutral-500);
+  line-height: 1.4;
+}
+
 .compare {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px 24px;
+  gap: 12px 24px;
 }
 
 .compareLink {
@@ -39,6 +59,87 @@
 
 .compareLink:hover {
   text-decoration: underline;
+}
+
+.compareButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: var(--neutral-0);
+  border: 1px solid var(--primary-300);
+  border-radius: var(--radius-pill);
+  color: var(--primary-700);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.compareButton:hover {
+  background: var(--primary-50);
+  border-color: var(--primary-600);
+}
+
+.tableWrapper {
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  overflow-x: auto;
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(0, 51, 97, 0.08);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px;
+}
+
+.table th,
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--neutral-200);
+  font-size: 15px;
+}
+
+.table th {
+  background: var(--primary-50);
+  color: var(--primary-900);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.table th:not(:first-child),
+.table td:not(:first-child) {
+  text-align: center;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: var(--neutral-50);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-600);
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.dash {
+  color: var(--neutral-400);
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .note {

@@ -51,6 +51,7 @@ const PATHS = {
   ],
   menu: ['M4 12H20', 'M4 6H20', 'M4 18H20'],
   close: ['M18 6L6 18', 'M6 6L18 18'],
+  shield: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'],
 }
 
 export default function Icon({ name, size = 24, strokeWidth = 2, className, title }) {

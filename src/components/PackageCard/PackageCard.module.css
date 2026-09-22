@@ -49,6 +49,60 @@
   white-space: nowrap;
 }
 
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: -6px;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--neutral-900);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.highlighted .price {
+  color: var(--neutral-0);
+}
+
+.period {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--neutral-500);
+}
+
+.highlighted .period {
+  color: var(--primary-200);
+}
+
+.limitBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  border-radius: 8px;
+}
+
+.highlighted .limitBadge {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.limitText {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-700);
+  line-height: 1.3;
+}
+
+.highlighted .limitText {
+  color: var(--neutral-0);
+}
+
 .description {
   color: var(--neutral-600);
   min-height: 60px;

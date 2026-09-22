@@ -1,26 +1,27 @@
 import Button from '../../components/Button/Button'
-import { contacts, telHref } from '../../data/content'
+import { contacts, cta, telHref } from '../../data/content'
 import styles from './Cta.module.css'
 
-export default function Cta() {
+export default function Cta({ audience = 'business' }) {
+  const copy = cta[audience] || cta.business
+  const phone = audience === 'private' ? contacts.booking.phone : contacts.service.phone
+
   return (
     <section id="ajanlat" className={styles.section} aria-labelledby="cta-title">
       <div className="container">
         <div className={styles.banner}>
           <div className={styles.copy}>
             <h2 id="cta-title" className={`t-h2 ${styles.title}`}>
-              Kérjen ajánlatot cégének!
+              {copy.title}
             </h2>
-            <p className={`t-body-l ${styles.text}`}>
-              Minimum 10 fős csoportos egészségbiztosításra. Kollégáink várják megkeresését!
-            </p>
+            <p className={`t-body-l ${styles.text}`}>{copy.text}</p>
           </div>
           <div className={styles.buttons}>
-            <Button href={`mailto:${contacts.email}?subject=Ajánlatkérés`} variant="onDark">
-              Ajánlatot kérek
+            <Button href={copy.primaryHref} variant="onDark">
+              {copy.primaryLabel}
             </Button>
-            <Button href={telHref(contacts.service.phone)} variant="ghost" inverted>
-              {contacts.service.phone}
+            <Button href={telHref(phone)} variant="ghost" inverted>
+              {phone}
             </Button>
           </div>
         </div>

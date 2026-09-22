@@ -9,14 +9,32 @@
   padding-block: var(--section-py);
 }
 
+.statsBanner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 36px 48px;
+  background: var(--primary-900);
+  border-radius: 20px;
+  box-shadow: 0 16px 36px -10px rgba(0, 51, 97, 0.25);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
+.gridFour {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 @media (max-width: 1024px) {
   .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gridFour {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -12,6 +12,10 @@ export default function PackageCard({
   benefits,
   badge,
   highlighted = false,
+  price,
+  period,
+  limit,
+  ctaLabel = 'Részletek',
   href = '#',
 }) {
   return (
@@ -23,6 +27,20 @@ export default function PackageCard({
         <h3 className={`t-h3 ${styles.title}`}>{name}</h3>
         {badge && <span className={`t-caption ${styles.badge}`}>{badge}</span>}
       </div>
+
+      {price && (
+        <div className={styles.priceContainer}>
+          <span className={styles.price}>{price}</span>
+          {period && <span className={styles.period}>{period}</span>}
+        </div>
+      )}
+
+      {limit && (
+        <div className={styles.limitBadge}>
+          <span className={styles.limitText}>{limit}</span>
+        </div>
+      )}
+
       <p className={`t-body-s ${styles.description}`}>{description}</p>
       <ul className={styles.benefits}>
         {benefits.map((benefit) => (
@@ -40,9 +58,9 @@ export default function PackageCard({
         size="M"
         fullWidth
         className={styles.cta}
-        aria-label={`${name} csomag részletei`}
+        aria-label={`${name} csomag – ${ctaLabel}`}
       >
-        Részletek
+        {ctaLabel}
       </Button>
     </article>
   )
