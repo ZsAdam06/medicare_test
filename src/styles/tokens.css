@@ -48,7 +48,8 @@
   --container-max: 1280px;
   --gutter: 80px;
   --section-py: 96px;
-  --header-h: 93px;
+  /* A ragadós fejléc-sáv teljes magassága (felső sáv + fejléc) */
+  --header-h: 149px;
 }
 
 @media (max-width: 1024px) {
@@ -62,6 +63,6 @@
   :root {
     --gutter: 20px;
     --section-py: 64px;
-    --header-h: 81px;
+    --header-h: 130px;
   }
 }

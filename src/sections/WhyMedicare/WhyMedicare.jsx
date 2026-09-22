@@ -11,7 +11,7 @@ export default function WhyMedicare({ audience = 'business' }) {
 
   return (
     <section id="miert" className={styles.section} aria-labelledby="why-title">
-      <div className={`container ${styles.inner}`}>
+      <div key={audience} className={`swap-in container ${styles.inner}`}>
         <SectionHead id="why-title" eyebrow={copy.eyebrow} title={copy.title} />
 
         {statList && statList.length > 0 && (

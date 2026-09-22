@@ -10,12 +10,19 @@ export default function SegmentedControl({
   onChange,
   label,
   size = 'M',
+  tone = 'light',
   stackOnMobile = false,
   className = '',
 }) {
   return (
     <div
-      className={[styles.control, styles[`size${size}`], stackOnMobile && styles.wrap, className]
+      className={[
+        styles.control,
+        styles[`size${size}`],
+        styles[`tone${tone === 'dark' ? 'Dark' : 'Light'}`],
+        stackOnMobile && styles.wrap,
+        className,
+      ]
         .filter(Boolean)
         .join(' ')}
       role="group"

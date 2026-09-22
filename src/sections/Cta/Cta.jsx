@@ -11,7 +11,7 @@ export default function Cta({ audience = 'business' }) {
   return (
     <section id="ajanlat" className={styles.section} aria-labelledby="cta-title">
       <div className="container">
-        <div className={styles.banner}>
+        <div key={audience} className={`swap-in ${styles.banner}`}>
           <div className={styles.copy}>
             <h2 id="cta-title" className={`t-h2 ${styles.title}`}>
               {copy.title}

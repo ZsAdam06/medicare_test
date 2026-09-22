@@ -9,7 +9,7 @@ export default function HowItWorks({ audience = 'business' }) {
 
   return (
     <section id="ellatas" className={styles.section} aria-labelledby="how-title">
-      <div className={`container ${styles.inner}`}>
+      <div key={audience} className={`swap-in container ${styles.inner}`}>
         <SectionHead id="how-title" eyebrow={copy.eyebrow} title={copy.title} />
         <ol className={styles.steps}>
           {stepList.map((step, i) => (

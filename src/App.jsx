@@ -7,6 +7,7 @@ import Landing from './pages/Landing'
 import Compare from './pages/Compare'
 import NotReady from './pages/NotReady'
 import { COMPARE_PATH } from './data/comparison'
+import { AUDIENCE_PATHS } from './data/routes'
 import styles from './App.module.css'
 
 export default function App() {
@@ -19,7 +20,8 @@ export default function App() {
         </a>
         <Header />
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path={AUDIENCE_PATHS.business} element={<Landing />} />
+          <Route path={AUDIENCE_PATHS.private} element={<Landing />} />
           <Route path={COMPARE_PATH} element={<Compare />} />
           <Route path="*" element={<NotReady />} />
         </Routes>

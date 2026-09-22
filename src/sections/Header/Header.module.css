@@ -1,3 +1,10 @@
+/* A felső sáv és a fejléc együtt ragad, így a célcsoport-váltó végig látszik. */
+.stack {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
 .utility {
   background: var(--primary-950);
 }
@@ -7,15 +14,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-block: 10px;
-}
-
-.disclaimer {
-  color: var(--primary-300);
+  padding-block: 6px;
 }
 
 .contacts {
   display: flex;
+  align-items: center;
   gap: 28px;
   color: var(--primary-100);
 }
@@ -25,10 +29,35 @@
   text-decoration: underline;
 }
 
+.demoNote {
+  color: var(--primary-300);
+}
+
+/* Célcsoport-váltó */
+.switchWide {
+  display: flex;
+}
+
+.switchCompact {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border: 1px solid rgb(71 151 225 / 0.35);
+  border-radius: var(--radius-pill);
+  background: rgb(71 151 225 / 0.16);
+  color: var(--neutral-0);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.switchIcon {
+  color: var(--primary-200);
+  font-size: 14px;
+}
+
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  position: relative;
   background: var(--neutral-0);
   border-bottom: 1px solid var(--neutral-200);
 }
@@ -178,12 +207,22 @@
 }
 
 @media (max-width: 1024px) {
-  .utilityInner {
-    justify-content: center;
-  }
-
   .contacts {
     display: none;
+  }
+
+  .utilityInner {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .switchWide {
+    display: none;
+  }
+
+  .switchCompact {
+    display: inline-flex;
   }
 }
 

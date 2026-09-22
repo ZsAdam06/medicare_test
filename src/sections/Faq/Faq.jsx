@@ -9,7 +9,7 @@ export default function Faq({ audience = 'business' }) {
 
   return (
     <section className={styles.section} aria-labelledby="faq-title">
-      <div className={`container ${styles.inner}`}>
+      <div key={audience} className={`swap-in container ${styles.inner}`}>
         <div className={styles.intro}>
           <p className={`t-caption ${styles.eyebrow}`}>GYIK</p>
           <h2 id="faq-title" className={`t-h2 ${styles.title}`}>

@@ -1,17 +1,61 @@
 import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../../components/Button/Button'
 import Icon from '../../components/Icon/Icon'
 import AppLink from '../../components/AppLink/AppLink'
+import SegmentedControl from '../../components/SegmentedControl/SegmentedControl'
 import { useQuoteDialog } from '../../components/QuoteDialog/useQuoteDialog'
 import logo from '../../assets/brand/logo.png'
 import { contacts, nav, telHref } from '../../data/content'
+import { AUDIENCE_PATHS, audienceFromPath, isAudiencePath } from '../../data/routes'
 import styles from './Header.module.css'
 
-function UtilityBar() {
+const AUDIENCE_OPTIONS = [
+  { id: 'business', label: 'Cégeknek' },
+  { id: 'private', label: 'Magánszemélyeknek' },
+]
+
+const OTHER_AUDIENCE = { business: 'private', private: 'business' }
+
+/** A célcsoport-váltó a felső sávban: végig látszik, melyik nézetben van a látogató. */
+function AudienceSwitch({ audience, onChange }) {
+  const other = OTHER_AUDIENCE[audience]
+  const otherLabel = AUDIENCE_OPTIONS.find((option) => option.id === other).label
+
   return (
-    <aside className={styles.utility} aria-label="Tájékoztatás és elérhetőségek">
+    <>
+      <div className={styles.switchWide}>
+        <SegmentedControl
+          options={AUDIENCE_OPTIONS}
+          value={audience}
+          onChange={onChange}
+          size="S"
+          tone="dark"
+          label="Kinek keres egészségbiztosítást?"
+        />
+      </div>
+
+      {/* Mobilon nem fér ki a két felirat, ezért egy gomb vált a másik nézetre. */}
+      <button
+        type="button"
+        className={`t-caption ${styles.switchCompact}`}
+        onClick={() => onChange(other)}
+      >
+        <span aria-hidden="true">{AUDIENCE_OPTIONS.find((o) => o.id === audience).label}</span>
+        <span className={styles.switchIcon} aria-hidden="true">
+          ⇄
+        </span>
+        <span className="visually-hidden">{`Átváltás erre: ${otherLabel}`}</span>
+      </button>
+    </>
+  )
+}
+
+function UtilityBar({ audience, onAudienceChange }) {
+  return (
+    <aside className={styles.utility} aria-label="Célcsoport és elérhetőségek">
       <div className={`container ${styles.utilityInner}`}>
-        <p className={`t-caption ${styles.disclaimer}`}>Koncepció demó – nem hivatalos oldal</p>
+        <AudienceSwitch audience={audience} onChange={onAudienceChange} />
         <ul className={`t-body-s ${styles.contacts}`}>
           <li>
             {contacts.service.label}:{' '}
@@ -21,9 +65,7 @@ function UtilityBar() {
             {contacts.booking.label}:{' '}
             <a href={telHref(contacts.booking.phone)}>{contacts.booking.phone}</a>
           </li>
-          <li>
-            <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
-          </li>
+          <li className={styles.demoNote}>Koncepció demó</li>
         </ul>
       </div>
     </aside>
@@ -33,6 +75,14 @@ function UtilityBar() {
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { openQuote } = useQuoteDialog()
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const audience = audienceFromPath(pathname)
+
+  const changeAudience = (next) => {
+    if (next === audience && isAudiencePath(pathname)) return
+    navigate(AUDIENCE_PATHS[next], { preventScrollReset: true })
+  }
 
   useEffect(() => {
     if (!menuOpen) return
@@ -49,8 +99,8 @@ export default function Header() {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <>
-      <UtilityBar />
+    <div className={styles.stack}>
+      <UtilityBar audience={audience} onAudienceChange={changeAudience} />
       <header className={styles.header}>
         <div className={`container ${styles.inner}`}>
           <AppLink href="/" className={styles.logo} aria-label="Medicare Biztosító – kezdőlap">
@@ -73,7 +123,7 @@ export default function Header() {
             <AppLink href="/#ellatas" className={styles.bookingLink}>
               Online időpontfoglalás
             </AppLink>
-            <Button size="M" onClick={() => openQuote()}>
+            <Button size="M" onClick={() => openQuote({ audience })}>
               Ajánlatot kérek
             </Button>
           </div>
@@ -114,7 +164,7 @@ export default function Header() {
               fullWidth
               onClick={() => {
                 closeMenu()
-                openQuote()
+                openQuote({ audience })
               }}
             >
               Ajánlatot kérek
@@ -122,6 +172,6 @@ export default function Header() {
           </nav>
         </div>
       </header>
-    </>
+    </div>
   )
 }
