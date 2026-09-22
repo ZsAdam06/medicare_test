@@ -1,5 +1,4 @@
 import { useId, useState } from 'react'
-import AudienceToggle from '../../components/AudienceToggle/AudienceToggle'
 import PackageCard from '../../components/PackageCard/PackageCard'
 import SectionHead from '../../components/SectionHead/SectionHead'
 import AppLink from '../../components/AppLink/AppLink'
@@ -29,7 +28,7 @@ function ComparisonCell({ value }) {
   )
 }
 
-export default function Packages({ audience, onAudienceChange }) {
+export default function Packages({ audience }) {
   const [showComparison, setShowComparison] = useState(false)
   const { openQuote } = useQuoteDialog()
   const footnotesId = useId()
@@ -40,13 +39,13 @@ export default function Packages({ audience, onAudienceChange }) {
   return (
     <section id="csomagok" className={styles.section} aria-labelledby="packages-title">
       <div className={`container ${styles.inner}`}>
-        <div className={styles.head}>
+        <div key={`head-${audience}`} className={`swap-in ${styles.head}`}>
           <SectionHead id="packages-title" eyebrow={copy.eyebrow} title={copy.title} />
-          <AudienceToggle value={audience} onChange={onAudienceChange} />
         </div>
 
         <ul
-          className={`${styles.cards} ${isPrivate ? styles.cardsThree : ''}`}
+          key={`cards-${audience}`}
+          className={`swap-in ${styles.cards} ${isPrivate ? styles.cardsThree : ''}`}
           aria-label="Csomagok"
           aria-describedby={copy.footnotes ? footnotesId : undefined}
         >

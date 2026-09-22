@@ -28,6 +28,7 @@ src/
   data/content.js       a nyitóoldal szövegei és képei
   data/comparison.js    az összehasonlító oldal csomag- és szolgáltatásadatai
   data/quote.js         az ajánlatkérő űrlap mezői és választható értékei
+  data/routes.js        a két célcsoport útvonalai
   assets/               logó, hero kép, szolgáltatás-csempék képei
 ```
 
@@ -36,19 +37,24 @@ Betűtípus: Plus Jakarta Sans (Google Fonts).
 
 ## Oldalak
 
-- `/` – nyitóoldal
+- `/` – nyitóoldal, cégeknek szóló tartalommal
+- `/maganszemelyeknek` – ugyanaz az oldal, magánszemélyeknek szóló tartalommal
 - `/csomagok-osszehasonlitasa` – a vállalati csomagok részletes összehasonlítása
   (15 szolgáltatás × 5 csomag, soronként lenyitható hivatalos leírással, lábjegyzetekkel)
 - minden más útvonal (`/keszul`, elgépelt cím) – „Ez az oldal még nem készült el” helykitöltő oldal,
   fejléccel és lábléccel. A demóban még el nem készült aloldalak linkjei ide mutatnak.
 
 Kliensoldali routing (react-router), ezért statikus kiszolgálón minden útvonalat az
-`index.html`-re kell irányítani (a `vite dev` és a `vite preview` ezt magától megteszi).
+`index.html`-re kell irányítani. Ezt a `public/_redirects` fájl intézi (Render, Netlify);
+a `vite dev` és a `vite preview` magától kezeli.
 
 ## Viselkedés
 
-- **Célcsoport-váltó** (Cégeknek / Magánszemélyeknek) – a hero és a csomagok szekció
-  tartalmát együtt váltja, mindkét váltó ugyanazt az állapotot vezérli.
+- **Célcsoport-váltó** (Cégeknek / Magánszemélyeknek) – a felső sávban, a fejléccel
+  együtt ragadva, így végig látszik, melyik nézetben van a látogató. A két nézetnek
+  saját URL-je van (megosztható, a vissza gomb működik), váltáskor a görgetési
+  pozíció megmarad, a cserélődő szekciók áttűnnek, és egy rövid csík visszajelez.
+  Mobilon a felső sávban egy kompakt gomb vált a másik nézetre.
 - **GYIK** – akadálymentes harmonika, egyszerre egy nyitott elem.
 - **Mobil menü** – hamburger gomb 1024px alatt, Esc-re záródik.
 - **Csomagkártyák** – 1200px alatt vízszintesen görgethető, snap-elő sor.

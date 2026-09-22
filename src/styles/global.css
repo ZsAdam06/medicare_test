@@ -89,6 +89,24 @@ h1[tabindex='-1']:focus-visible {
   padding-inline: var(--gutter);
 }
 
+/* Célcsoport-váltáskor a kicserélődő blokkok rövid áttűnéssel érkeznek. */
+.swap-in {
+  animation: swap-in 0.25s ease both;
+}
+
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swap-in {
+    animation: none;
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

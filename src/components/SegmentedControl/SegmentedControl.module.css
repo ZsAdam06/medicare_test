@@ -3,11 +3,21 @@
   align-items: flex-start;
   gap: 4px;
   padding: 6px;
-  background: var(--neutral-0);
-  border: 1px solid var(--neutral-200);
   border-radius: var(--radius-pill);
   flex-shrink: 0;
   max-width: 100%;
+}
+
+.toneLight {
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+}
+
+/* Sötét sávra: átlátszó keret, az aktív opció világos pirula */
+.toneDark {
+  padding: 3px;
+  background: rgb(71 151 225 / 0.16);
+  border: 1px solid rgb(71 151 225 / 0.35);
 }
 
 .option {
@@ -36,28 +46,50 @@
   line-height: 20px;
 }
 
-.option:not(.active):hover {
+.toneLight .option:not(.active):hover {
   color: var(--primary-700);
   background: var(--primary-50);
 }
 
-.active {
+.toneLight .active {
   background: var(--primary-700);
   color: var(--neutral-0);
 }
 
-/* 420px alatt a hosszú feliratok egymás alá kerülnek, hogy ne lógjanak ki */
+.toneDark .option {
+  color: var(--primary-200);
+}
+
+.toneDark .option:not(.active):hover {
+  color: var(--neutral-0);
+  background: rgb(255 255 255 / 0.12);
+}
+
+.toneDark .active {
+  background: var(--neutral-0);
+  color: var(--primary-900);
+}
+
+/* Keskeny kijelzőn kisebb felirattal fér ki a két opció egymás mellett */
 @media (max-width: 420px) {
+  .wrap .option {
+    padding: 9px 14px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* 320px körül már csak egymás alatt fér ki */
+@media (max-width: 360px) {
   .wrap {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    border-radius: 28px;
+    border-radius: 24px;
   }
 
   .wrap .option {
-    padding-inline: 18px;
     white-space: normal;
   }
 }

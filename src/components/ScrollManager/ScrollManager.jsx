@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { isAudiencePath } from '../../data/routes'
 
 const focusTarget = (target) => {
   if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
@@ -18,7 +19,13 @@ export default function ScrollManager() {
   useEffect(() => {
     const isFirstRun = previousPath.current === null
     const pathChanged = !isFirstRun && previousPath.current !== pathname
+    // A célcsoport-váltás is útvonalváltás, de ott a görgetési pozíció marad,
+    // különben pont a kicserélődő tartalmat nem látná a látogató.
+    const audienceSwitch =
+      pathChanged && isAudiencePath(previousPath.current) && isAudiencePath(pathname)
     previousPath.current = pathname
+
+    if (audienceSwitch) return
 
     if (!hash) {
       window.scrollTo({ top: 0, behavior: 'auto' })

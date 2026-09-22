@@ -1,0 +1,35 @@
+/* Visszajelző csík a váltásról: a ragadós fejléc alatt úszik, pár másodpercig. */
+.notice {
+  position: fixed;
+  top: calc(var(--header-h) + 12px);
+  left: 50%;
+  z-index: 40;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.noticeInner {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-900);
+  color: var(--neutral-0);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  box-shadow: 0 16px 32px -12px rgb(0 26 64 / 0.5);
+  animation: notice-in 0.25s ease both;
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noticeInner {
+    animation: none;
+  }
+}
