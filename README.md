@@ -18,12 +18,16 @@ npm run preview  # a build kiszolgálása
 src/
   styles/tokens.css     Foundations: színskálák, package színek, layout változók
   styles/global.css     reset + tipográfiai osztályok (t-display … t-caption, t-button)
+  pages/                oldalak (Landing, Compare, NotReady)
   components/           a Figma Components oldal komponensei
-    Button, AudienceToggle, PackageCard, FeatureCard, Stat, Step, FaqItem,
+    Button, SegmentedControl, AudienceToggle, PackageCard, FeatureCard, Stat, Step, FaqItem,
+    Modal, QuoteForm (ajánlatkérő modal), QuoteDialog (provider + hook),
     ServiceTile, SectionHead, Icon (Lucide ikonok a Figmából exportálva)
   sections/             az oldal szekciói (Header, Hero, Packages, WhyMedicare,
                         HowItWorks, Ecosystem, Faq, Cta, Footer)
-  data/content.js       minden szöveges tartalom és kép egy helyen
+  data/content.js       a nyitóoldal szövegei és képei
+  data/comparison.js    az összehasonlító oldal csomag- és szolgáltatásadatai
+  data/quote.js         az ajánlatkérő űrlap mezői és választható értékei
   assets/               logó, hero kép, szolgáltatás-csempék képei
 ```
 
@@ -33,6 +37,8 @@ Betűtípus: Plus Jakarta Sans (Google Fonts).
 ## Oldalak
 
 - `/` – nyitóoldal
+- `/csomagok-osszehasonlitasa` – a vállalati csomagok részletes összehasonlítása
+  (15 szolgáltatás × 5 csomag, soronként lenyitható hivatalos leírással, lábjegyzetekkel)
 - minden más útvonal (`/keszul`, elgépelt cím) – „Ez az oldal még nem készült el” helykitöltő oldal,
   fejléccel és lábléccel. A demóban még el nem készült aloldalak linkjei ide mutatnak.
 
@@ -46,6 +52,13 @@ Kliensoldali routing (react-router), ezért statikus kiszolgálón minden útvon
 - **GYIK** – akadálymentes harmonika, egyszerre egy nyitott elem.
 - **Mobil menü** – hamburger gomb 1024px alatt, Esc-re záródik.
 - **Csomagkártyák** – 1200px alatt vízszintesen görgethető, snap-elő sor.
+- **Ajánlatkérés** – minden „Ajánlatot kérek” gomb egy modal ablakot nyit (natív <dialog>):
+  három lépés (adatok → csomag → áttekintés), mezőszintű validáció, siker-állapot.
+  Cégeknek és magánszemélyeknek külön mezőkészlet; a magánszemélyes kártyák
+  „Érdekel!” gombja előre kiválasztja az adott csomagot.
+  Koncepció demó: az űrlap nem küld adatot sehova.
+- **Összehasonlító táblázat** – asztali nézetben ragadós fejléc és első oszlop,
+  900px alatt csomagválasztóval egyszerre egy csomag oszlopa látszik.
 - `prefers-reduced-motion` esetén az animációk kikapcsolnak.
 
 ## Akadálymentesség

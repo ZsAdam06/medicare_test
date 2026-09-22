@@ -7,19 +7,25 @@ const focusTarget = (target) => {
 }
 
 /**
- * Oldalváltáskor a lap tetejére ugrik, horgonyos linknél pedig a cél szekcióra.
- * A fókuszt is átteszi a célra, hogy billentyűzettel onnan folytatódjon a bejárás.
+ * Oldalváltáskor a lap tetejére ugrik és az új oldal címsorára teszi a fókuszt,
+ * horgonyos linknél pedig a cél szekcióra. Az első betöltéskor nem nyúl a fókuszhoz,
+ * hogy az „Ugrás a tartalomra” link maradjon az első tabstop.
  */
 export default function ScrollManager() {
   const { pathname, hash } = useLocation()
-  const firstRun = useRef(true)
+  const previousPath = useRef(null)
 
   useEffect(() => {
-    const isFirstRun = firstRun.current
-    firstRun.current = false
+    const isFirstRun = previousPath.current === null
+    const pathChanged = !isFirstRun && previousPath.current !== pathname
+    previousPath.current = pathname
 
     if (!hash) {
       window.scrollTo({ top: 0, behavior: 'auto' })
+      if (pathChanged) {
+        const heading = document.querySelector('main h1')
+        if (heading) focusTarget(heading)
+      }
       return
     }
 
@@ -37,9 +43,9 @@ export default function ScrollManager() {
 
     // A cél szekció csak a következő kirajzolás után áll a helyén.
     let retry
-    const frame = requestAnimationFrame(() => {
+    const frame = setTimeout(() => {
       if (!scrollToHash(behavior)) retry = setTimeout(() => scrollToHash('auto'), 250)
-    })
+    }, 0)
 
     // Betöltéskor a képek még tolhatják a tartalmat, ezért utólag újraigazítunk.
     const onLoad = () => scrollToHash('auto')
@@ -50,7 +56,7 @@ export default function ScrollManager() {
     }
 
     return () => {
-      cancelAnimationFrame(frame)
+      clearTimeout(frame)
       clearTimeout(retry)
       clearTimeout(correction)
       window.removeEventListener('load', onLoad)

@@ -1,0 +1,332 @@
+/* Oldalfej */
+.head {
+  background: linear-gradient(
+    113deg,
+    var(--primary-950) 0%,
+    var(--primary-900) 55%,
+    var(--primary-700) 100%
+  );
+  color: var(--neutral-0);
+}
+
+.headInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding-block: 72px;
+}
+
+.eyebrow {
+  color: var(--primary-300);
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 820px;
+  color: var(--neutral-0);
+}
+
+.lead {
+  max-width: 640px;
+  color: var(--primary-100);
+}
+
+.headActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* Táblázat szekció */
+.tableSection {
+  background: var(--neutral-50);
+}
+
+.tableInner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: var(--section-py);
+}
+
+.tableHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.sectionTitle {
+  color: var(--neutral-900);
+}
+
+.note {
+  color: var(--neutral-500);
+}
+
+/* Mobil csomagválasztó: 900px fölött nincs rá szükség */
+.selector {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selectorLabel {
+  color: var(--neutral-600);
+}
+
+.selectorControl {
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+
+.tableWrapper {
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  border-radius: 24px;
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--neutral-200);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover th,
+.table tbody tr:hover td {
+  background: var(--primary-50);
+}
+
+.table thead th {
+  z-index: 2;
+  background: var(--neutral-0);
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.rowHeadCell {
+  min-width: 280px;
+  color: var(--neutral-500);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.packageHead {
+  min-width: 132px;
+  text-align: center;
+  box-shadow: inset 0 4px 0 0 var(--accent, var(--package-blue));
+}
+
+.packageName {
+  display: block;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--neutral-900);
+}
+
+.packageMeta {
+  display: block;
+  margin-top: 2px;
+  color: var(--neutral-500);
+  text-transform: uppercase;
+}
+
+.rowHeader {
+  color: var(--neutral-900);
+  font-weight: 600;
+  background: var(--neutral-0);
+}
+
+.rowLabel {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.marker {
+  color: var(--primary-600);
+}
+
+.details {
+  margin-top: 6px;
+}
+
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-block: 2px;
+  color: var(--primary-700);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.summary:hover {
+  text-decoration: underline;
+}
+
+.detailText {
+  max-width: 62ch;
+  margin-top: 6px;
+  color: var(--neutral-600);
+  font-weight: 400;
+}
+
+.table td {
+  text-align: center;
+}
+
+.check {
+  display: block;
+  color: var(--primary-700);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.dash {
+  display: block;
+  color: var(--neutral-300);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cellNote {
+  display: block;
+  margin-top: 2px;
+  color: var(--neutral-600);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.disclaimer {
+  color: var(--neutral-500);
+  max-width: 90ch;
+}
+
+/* Lábjegyzetek */
+.footnotes {
+  background: var(--neutral-0);
+}
+
+.footnotesInner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-block: var(--section-py);
+}
+
+.footnoteList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 1040px;
+}
+
+/* Széles kijelzőn a táblázat kifér, ezért az oldalgörgetéshez tapad a fejlécsor. */
+@media (min-width: 1200px) {
+  /* clip: a lekerekítés megmarad, de nem lesz belőle görgetődoboz,
+     így a fejlécsor az oldal görgetéséhez tud tapadni. */
+  .tableWrapper {
+    overflow: clip;
+  }
+
+  .table thead th {
+    position: sticky;
+    top: var(--header-h);
+  }
+
+  .table thead th::before {
+    content: '';
+    position: absolute;
+    inset: -1px 0 auto;
+    height: 1px;
+    background: var(--neutral-0);
+  }
+}
+
+@media (min-width: 901px) {
+  /* Az első oszlop görgetéskor a helyén marad */
+  .rowHeadCell,
+  .rowHeader {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  .rowHeadCell {
+    z-index: 3;
+  }
+
+  .rowHeader::after,
+  .rowHeadCell::after {
+    content: '';
+    position: absolute;
+    inset: 0 -1px 0 auto;
+    width: 1px;
+    background: var(--neutral-200);
+  }
+}
+
+@media (max-width: 900px) {
+  .selector {
+    display: flex;
+  }
+
+  .hiddenOnMobile {
+    display: none;
+  }
+
+  .tableWrapper {
+    max-height: none;
+  }
+
+  .rowHeadCell {
+    min-width: 0;
+  }
+
+  .table th,
+  .table td {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .headInner {
+    padding-block: 48px;
+  }
+
+  .table th,
+  .table td {
+    padding: 14px 12px;
+  }
+
+  .headActions {
+    flex-direction: column;
+    align-self: stretch;
+    gap: 10px;
+  }
+
+  .headActions > * {
+    width: 100%;
+  }
+}

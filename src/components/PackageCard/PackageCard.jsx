@@ -18,7 +18,10 @@ export default function PackageCard({
   limit,
   ctaLabel = 'Részletek',
   href = PLACEHOLDER_PATH,
+  onCta,
 }) {
+  // onCta esetén a kártya gombja műveletet indít (ajánlatkérés), nem oldalra visz.
+  const ctaProps = onCta ? { onClick: () => onCta(name) } : { href }
   return (
     <article
       className={`${styles.card} ${highlighted ? styles.highlighted : ''}`}
@@ -54,7 +57,7 @@ export default function PackageCard({
         ))}
       </ul>
       <Button
-        href={href}
+        {...ctaProps}
         variant={highlighted ? 'onDark' : 'secondary'}
         size="M"
         fullWidth

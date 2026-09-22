@@ -1,10 +1,12 @@
 import AudienceToggle from '../../components/AudienceToggle/AudienceToggle'
 import Button from '../../components/Button/Button'
 import Icon from '../../components/Icon/Icon'
+import { useQuoteDialog } from '../../components/QuoteDialog/useQuoteDialog'
 import { hero, highlights } from '../../data/content'
 import styles from './Hero.module.css'
 
 export default function Hero({ audience, onAudienceChange }) {
+  const { openQuote } = useQuoteDialog()
   const copy = hero[audience]
   const { floatingCard } = hero
 
@@ -21,7 +23,7 @@ export default function Hero({ audience, onAudienceChange }) {
               <p className={`t-body-l ${styles.lead}`}>{copy.lead}</p>
             </div>
             <div className={styles.ctas}>
-              <Button href="#ajanlat" variant="onDark">
+              <Button variant="onDark" onClick={() => openQuote({ audience })}>
                 Ajánlatot kérek
               </Button>
               <Button href="#csomagok" variant="ghost" inverted>
