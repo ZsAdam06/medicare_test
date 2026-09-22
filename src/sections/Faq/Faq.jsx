@@ -8,7 +8,7 @@ export default function Faq({ audience = 'business' }) {
   const faqList = faqs[audience] || faqs.business
 
   return (
-    <section className={styles.section} aria-labelledby="faq-title">
+    <section id="gyik" className={styles.section} aria-labelledby="faq-title">
       <div key={audience} className={`swap-in container ${styles.inner}`}>
         <div className={styles.intro}>
           <p className={`t-caption ${styles.eyebrow}`}>GYIK</p>
