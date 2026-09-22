@@ -1,0 +1,23 @@
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.eyebrow {
+  color: var(--primary-700);
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--neutral-900);
+}
+
+.inverted .eyebrow {
+  color: var(--primary-300);
+}
+
+.inverted .title {
+  color: var(--neutral-0);
+}

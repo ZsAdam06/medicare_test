@@ -1,0 +1,42 @@
+.toggle {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 6px;
+  background: var(--neutral-0);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-pill);
+  flex-shrink: 0;
+}
+
+.option {
+  padding: 12px 24px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--neutral-600);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.option:not(.active):hover {
+  color: var(--primary-700);
+  background: var(--primary-50);
+}
+
+.active {
+  background: var(--primary-700);
+  color: var(--neutral-0);
+}
+
+@media (max-width: 380px) {
+  .option {
+    padding-inline: 18px;
+  }
+}

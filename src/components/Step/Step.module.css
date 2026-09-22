@@ -1,0 +1,23 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.number {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-700);
+  color: var(--neutral-0);
+}
+
+.title {
+  color: var(--neutral-900);
+}
+
+.description {
+  color: var(--neutral-600);
+}

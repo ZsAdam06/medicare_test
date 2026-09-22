@@ -1,0 +1,48 @@
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 229px;
+  padding: 24px 24px 22px;
+  border-radius: 20px;
+  background-color: var(--primary-700);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgb(0 26 64 / 0.5);
+}
+
+.title {
+  color: var(--neutral-0);
+  max-width: 235px;
+}
+
+.site {
+  color: var(--primary-200);
+}
+
+.tile:hover .site {
+  color: var(--neutral-0);
+}
+
+@media (max-width: 767px) {
+  .tile {
+    min-height: 193px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .tile:hover {
+    transition: none;
+    transform: none;
+  }
+}

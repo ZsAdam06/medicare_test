@@ -1,0 +1,86 @@
+.section {
+  background: var(--neutral-50);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-block: var(--section-py);
+}
+
+.head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.head > :first-child {
+  max-width: 620px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.compare {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.compareLink {
+  color: var(--primary-700);
+}
+
+.compareLink:hover {
+  text-decoration: underline;
+}
+
+.note {
+  color: var(--neutral-500);
+}
+
+/* Szűkebb kijelzőn vízszintesen görgethető kártyasor (mobil terv szerint) */
+@media (max-width: 1200px) {
+  .cards {
+    display: flex;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 4px var(--gutter) 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: thin;
+  }
+
+  .cardItem {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    gap: 28px;
+  }
+
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .cards {
+    margin-bottom: -24px;
+  }
+
+  .compare {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

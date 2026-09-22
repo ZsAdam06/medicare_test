@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "plus jakarta sans",
+        "createdAt": "2026-09-22T14:46:54.138Z",
+        "reason": "Figma Foundations page specifies Plus Jakarta Sans as the brand typeface"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/components/PackageCard/PackageCard.module.css"
+        ],
+        "createdAt": "2026-09-22T14:46:54.260Z",
+        "reason": "Figma Package Card component defines the 8px top accent strip in package colors"
+      }
+    ]
+  }
+}

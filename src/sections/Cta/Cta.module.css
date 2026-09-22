@@ -1,0 +1,58 @@
+.section {
+  background: var(--neutral-0);
+  padding-bottom: var(--section-py);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 56px 64px;
+  border-radius: 32px;
+  background: linear-gradient(90deg, var(--primary-700) 0%, var(--primary-500) 100%);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 620px;
+}
+
+.title {
+  color: var(--neutral-0);
+}
+
+.text {
+  max-width: 560px;
+  color: var(--primary-100);
+}
+
+.buttons {
+  display: flex;
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner {
+    align-items: stretch;
+    gap: 24px;
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,18 @@
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.value {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--neutral-0);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  color: var(--primary-200);
+}

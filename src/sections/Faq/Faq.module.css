@@ -1,0 +1,58 @@
+.section {
+  background: var(--neutral-0);
+}
+
+.inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+  padding-block: var(--section-py);
+}
+
+.intro {
+  display: flex;
+  flex: 0 0 400px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  color: var(--primary-700);
+}
+
+.title {
+  color: var(--neutral-900);
+}
+
+.text {
+  color: var(--neutral-600);
+}
+
+.phone {
+  white-space: nowrap;
+}
+
+.phone:hover {
+  color: var(--primary-700);
+  text-decoration: underline;
+}
+
+.items {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+  }
+
+  .intro {
+    flex-basis: auto;
+  }
+}
