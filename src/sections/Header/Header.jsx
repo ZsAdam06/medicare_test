@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Button from '../../components/Button/Button'
 import Icon from '../../components/Icon/Icon'
 import AppLink from '../../components/AppLink/AppLink'
+import { useQuoteDialog } from '../../components/QuoteDialog/useQuoteDialog'
 import logo from '../../assets/brand/logo.png'
 import { contacts, nav, telHref } from '../../data/content'
 import styles from './Header.module.css'
@@ -31,6 +32,7 @@ function UtilityBar() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { openQuote } = useQuoteDialog()
 
   useEffect(() => {
     if (!menuOpen) return
@@ -71,7 +73,7 @@ export default function Header() {
             <AppLink href="/#ellatas" className={styles.bookingLink}>
               Online időpontfoglalás
             </AppLink>
-            <Button href="/#ajanlat" size="M">
+            <Button size="M" onClick={() => openQuote()}>
               Ajánlatot kérek
             </Button>
           </div>
@@ -108,7 +110,13 @@ export default function Header() {
                 </AppLink>
               </li>
             </ul>
-            <Button href="/#ajanlat" fullWidth onClick={closeMenu}>
+            <Button
+              fullWidth
+              onClick={() => {
+                closeMenu()
+                openQuote()
+              }}
+            >
               Ajánlatot kérek
             </Button>
           </nav>

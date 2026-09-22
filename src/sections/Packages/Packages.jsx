@@ -3,7 +3,9 @@ import AudienceToggle from '../../components/AudienceToggle/AudienceToggle'
 import PackageCard from '../../components/PackageCard/PackageCard'
 import SectionHead from '../../components/SectionHead/SectionHead'
 import AppLink from '../../components/AppLink/AppLink'
-import { PLACEHOLDER_PATH, packageComparison, packages, packagesSection } from '../../data/content'
+import { useQuoteDialog } from '../../components/QuoteDialog/useQuoteDialog'
+import { packageComparison, packages, packagesSection } from '../../data/content'
+import { COMPARE_PATH } from '../../data/comparison'
 import styles from './Packages.module.css'
 
 /** Cella tartalma: logikai értéknél pipa/gondolatjel, olvasható szöveggel. */
@@ -29,6 +31,7 @@ function ComparisonCell({ value }) {
 
 export default function Packages({ audience, onAudienceChange }) {
   const [showComparison, setShowComparison] = useState(false)
+  const { openQuote } = useQuoteDialog()
   const footnotesId = useId()
   const copy = packagesSection[audience]
   const packageList = packages[audience] || packages.business
@@ -49,7 +52,14 @@ export default function Packages({ audience, onAudienceChange }) {
         >
           {packageList.map((pkg) => (
             <li key={pkg.name} className={styles.cardItem}>
-              <PackageCard {...pkg} />
+              <PackageCard
+                {...pkg}
+                onCta={
+                  isPrivate
+                    ? (name) => openQuote({ audience: 'private', package: name })
+                    : undefined
+                }
+              />
             </li>
           ))}
         </ul>
@@ -77,7 +87,7 @@ export default function Packages({ audience, onAudienceChange }) {
               <span aria-hidden="true">{showComparison ? '▲' : '▼'}</span>
             </button>
           ) : (
-            <AppLink href={PLACEHOLDER_PATH} className={`t-button ${styles.compareLink}`}>
+            <AppLink href={COMPARE_PATH} className={`t-button ${styles.compareLink}`}>
               Csomagok részletes összehasonlítása →
             </AppLink>
           )}

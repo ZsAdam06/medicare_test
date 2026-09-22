@@ -75,6 +75,13 @@ button {
   }
 }
 
+/* Oldalváltáskor a címsor programozottan kap fókuszt – ehhez nem kell keret. */
+h1[tabindex='-1']:focus,
+h1[tabindex='-1']:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 .container {
   width: 100%;
   max-width: calc(var(--container-max) + 2 * var(--gutter));
@@ -163,6 +170,11 @@ button {
   .t-display {
     font-size: 40px;
     line-height: 46px;
+  }
+
+  .t-h1 {
+    font-size: 32px;
+    line-height: 40px;
   }
 
   .t-h2 {

@@ -1,0 +1,105 @@
+.dialog {
+  width: min(680px, 100%);
+  max-width: none;
+  max-height: 100dvh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgb(0 32 61 / 0.6);
+  backdrop-filter: blur(3px);
+}
+
+.dialog[open] {
+  animation: appear 0.22s ease both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  max-height: min(88dvh, 860px);
+  background: var(--neutral-0);
+  border-radius: 24px;
+  box-shadow: 0 32px 64px -16px rgb(0 26 64 / 0.45);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid var(--neutral-200);
+}
+
+.title {
+  color: var(--neutral-900);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin: -6px -8px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.close:hover {
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+}
+
+.body {
+  padding: 24px 28px 28px;
+  overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  .dialog {
+    width: 100%;
+    height: 100dvh;
+    margin: 0;
+    max-height: 100dvh;
+  }
+
+  .panel {
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .header {
+    padding: 20px 20px 14px;
+  }
+
+  .body {
+    padding: 20px 20px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open] {
+    animation: none;
+  }
+}
