@@ -29,7 +29,7 @@ function AudienceSwitch({ audience, onChange }) {
           options={AUDIENCE_OPTIONS}
           value={audience}
           onChange={onChange}
-          size="S"
+          size="XS"
           tone="dark"
           label="Kinek keres egészségbiztosítást?"
         />

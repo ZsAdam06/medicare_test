@@ -15,7 +15,7 @@
 
 /* Sötét sávra: átlátszó keret, az aktív opció világos pirula */
 .toneDark {
-  padding: 3px;
+  padding: 2px;
   background: rgb(71 151 225 / 0.16);
   border: 1px solid rgb(71 151 225 / 0.35);
 }
@@ -44,6 +44,12 @@
   padding: 8px 16px;
   font-size: 14px;
   line-height: 20px;
+}
+
+.sizeXS .option {
+  padding: 5px 12px;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .toneLight .option:not(.active):hover {
