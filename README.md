@@ -29,6 +29,8 @@ src/
   data/comparison.js    az összehasonlító oldal csomag- és szolgáltatásadatai
   data/quote.js         az ajánlatkérő űrlap mezői és választható értékei
   data/routes.js        a két célcsoport útvonalai
+  data/korhaz.js        a kórházi oldal szövegei és képei
+  pages/Korhaz/         a kórházi oldal (saját fejléc, lábléc és stílusrendszer)
   assets/               logó, hero kép, szolgáltatás-csempék képei
 ```
 
@@ -39,6 +41,8 @@ Betűtípus: Plus Jakarta Sans (Google Fonts).
 
 - `/` – nyitóoldal, cégeknek szóló tartalommal
 - `/maganszemelyeknek` – ugyanaz az oldal, magánszemélyeknek szóló tartalommal
+- `/korhaz` – a Medicare Magánkórház nyitóoldala: önálló arculat (Instrument Serif + Manrope,
+  sötét–krém ritmus, menta akcentus), videós heróval
 - `/csomagok-osszehasonlitasa` – a vállalati csomagok részletes összehasonlítása
   (15 szolgáltatás × 5 csomag, soronként lenyitható hivatalos leírással, lábjegyzetekkel)
 - minden más útvonal (`/keszul`, elgépelt cím) – „Ez az oldal még nem készült el” helykitöltő oldal,
@@ -66,6 +70,13 @@ a `vite dev` és a `vite preview` magától kezeli.
 - **Összehasonlító táblázat** – asztali nézetben ragadós fejléc és első oszlop,
   900px alatt csomagválasztóval egyszerre egy csomag oszlopa látszik.
 - `prefers-reduced-motion` esetén az animációk kikapcsolnak.
+
+## A kórházi hero videója
+
+A videó helye: `public/media/korhaz-hero.mp4`. A fájl cseréjéhez elég felülírni ezt az
+egy fájlt – a poszterkép (`src/assets/korhaz/hero-poszter.jpg`) addig is látszik, amíg a
+videó betölt, és csökkentett mozgásigény esetén a videó meg is áll. Ajánlott: néma,
+10–15 másodperces loop, 1920×1080, 3 MB alatt.
 
 ## Akadálymentesség
 
