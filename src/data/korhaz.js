@@ -7,6 +7,7 @@ import konzultacio from '../assets/hero/hero-doctor-1000.jpg'
 import tanczos from '../assets/korhaz/dr-tanczos-tamas.png'
 import karpati from '../assets/korhaz/dr-karpati-adel.jpg'
 import maszler from '../assets/korhaz/dr-maszler-hedvig.jpg'
+import gergely from '../assets/korhaz/dr-gergely-szabolcs.jpg'
 import logoWhite from '../assets/korhaz/logo-feher.png'
 
 export const KORHAZ_PATH = '/korhaz'
@@ -176,8 +177,7 @@ export const doctors = {
     { name: 'Dr. Tánczos Tamás', field: 'Traumatológia', photo: tanczos },
     { name: 'Dr. Kárpáti Adél', field: 'Aneszteziológia', photo: karpati },
     { name: 'Dr. Maszler Hedvig', field: 'Aneszteziológia', photo: maszler },
-    // A negyedik fotó (orvos-azonositas-alatt.jpg) addig nem kerül ki,
-    // amíg nem tisztázzuk, ki látható rajta.
+    { name: 'Dr. Gergely Szabolcs', field: 'Sebészet', photo: gergely },
   ],
 }
 
