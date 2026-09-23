@@ -152,7 +152,11 @@ function SelectField({ label, options, value, onChange, width }) {
   }
 
   return (
-    <div className={styles.field} style={width ? { width } : undefined} ref={wrapRef}>
+    <div
+      className={styles.field}
+      style={width ? { '--field-width': `${width}px` } : undefined}
+      ref={wrapRef}
+    >
       <span className={styles.label} id={`${id}-cimke`}>
         {label}
       </span>
@@ -204,30 +208,6 @@ function SelectField({ label, options, value, onChange, width }) {
           ))}
         </div>
       )}
-    </div>
-  )
-}
-
-/** Időpont: három gyorsválasztó gomb legördülő helyett. */
-function SlotField({ label, options, value, onChange }) {
-  return (
-    <div className={styles.field}>
-      <span className={styles.label} id="korhaz-idopont-cimke">
-        {label}
-      </span>
-      <div className={styles.slots} role="group" aria-labelledby="korhaz-idopont-cimke">
-        {options.map((option) => (
-          <button
-            key={option}
-            type="button"
-            className={`${styles.slot} ${option === value ? styles.slotOn : ''}`}
-            aria-pressed={option === value}
-            onClick={() => onChange(option)}
-          >
-            {option}
-          </button>
-        ))}
-      </div>
     </div>
   )
 }

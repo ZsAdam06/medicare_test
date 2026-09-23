@@ -12,6 +12,7 @@
 
 .field {
   position: relative;
+  width: var(--field-width, auto);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -179,7 +180,8 @@
   background: #4ae3c8;
 }
 
-@media (max-width: 1100px) {
+/* csak vízszintes elrendezésnél: oszlop irányban a flex-basis magasságot jelentene */
+@media (min-width: 768px) and (max-width: 1100px) {
   .bar {
     flex-wrap: wrap;
     gap: 18px 24px;
@@ -199,10 +201,21 @@
   }
 
   .field {
+    width: 100%;
     padding-right: 0;
     padding-bottom: 14px;
     border-right: 0;
     border-bottom: 1px solid rgb(255 255 255 / 0.18);
+  }
+
+  /* oszlop irányban a flex-grow függőlegesen nyújtaná a mezőt */
+  .fieldGrow {
+    flex: 0 0 auto;
+  }
+
+  .field:last-of-type {
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 
   .panel {

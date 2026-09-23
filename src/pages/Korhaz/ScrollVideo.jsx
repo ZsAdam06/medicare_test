@@ -11,8 +11,6 @@ export default function ScrollVideo({ videoSrc, poster }) {
   const sectionRef = useRef(null)
   const videoRef = useRef(null)
   const [progress, setProgress] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [isVideoReady, setIsVideoReady] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -22,18 +20,6 @@ export default function ScrollVideo({ videoSrc, poster }) {
     let targetTime = 0
     let rafId = null
     let isSeeking = false
-
-    const handleLoadedMetadata = () => {
-      if (video.duration && !isNaN(video.duration)) {
-        setDuration(video.duration)
-        setIsVideoReady(true)
-      }
-    }
-
-    video.addEventListener('loadedmetadata', handleLoadedMetadata)
-    if (video.readyState >= 1 && video.duration) {
-      handleLoadedMetadata()
-    }
 
     const onScroll = () => {
       const rect = section.getBoundingClientRect()
@@ -64,6 +50,11 @@ export default function ScrollVideo({ videoSrc, poster }) {
     const onSeeked = () => {
       isSeeking = false
     }
+
+    // A videó hossza csak a metaadatok betöltése után ismert – akkor számolunk újra.
+    const handleLoadedMetadata = () => onScroll()
+    video.addEventListener('loadedmetadata', handleLoadedMetadata)
+    if (video.readyState >= 1) handleLoadedMetadata()
 
     video.addEventListener('seeked', onSeeked)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -121,7 +112,7 @@ export default function ScrollVideo({ videoSrc, poster }) {
                 Lásson a felszín alá: <span className={styles.highlight}>3D MRI diagnosztika</span>
               </h2>
               <p className={styles.description}>
-                A modern képalkotás milliméteres pontosságot biztosít. Görgessen lefelé a vizsgálati folyamat és a belső struktúrák felderítéséhez.
+                A modern képalkotás milliméteres pontosságot ad. Görgessen lefelé, és a videó követi a mozdulatát.
               </p>
               <div className={styles.scrollPrompt}>
                 <span className={styles.mouseIcon}>
@@ -144,7 +135,7 @@ export default function ScrollVideo({ videoSrc, poster }) {
                 Nagyfelbontású szeletképek <span className={styles.highlight}>másodpercek alatt</span>
               </h2>
               <p className={styles.description}>
-                Csúcskategóriás készülékünkkel akár 50%-kal lerövidül a gépben töltött idő, miközben a legrészletesebb lágyrész-kontrasztot érjük el.
+                Csúcskategóriás készülékünkkel akár 50%-kal rövidebb a gépben töltött idő, részletgazdag lágyrész-kontraszt mellett.
               </p>
               <div className={styles.specsRow}>
                 <div className={styles.specItem}>
@@ -175,11 +166,11 @@ export default function ScrollVideo({ videoSrc, poster }) {
                 Lelet és szakorvosi konzultáció <span className={styles.highlight}>5 napon belül</span>
               </h2>
               <p className={styles.description}>
-                A vizsgálatot követően tapasztalt radiológus szakorvosaink azonnal megkezdik a kiértékelést, amelyet kezelőorvosával közösen tekinthet át.
+                Radiológus szakorvosaink azonnal megkezdik a kiértékelést, a leletet kezelőorvosával közösen tekintheti át.
               </p>
               <div className={styles.actionRow}>
                 <Link to="/korhaz/idopontok" className={styles.ctaButton}>
-                  Diagnosztikai időpontot keresek <span aria-hidden="true">→</span>
+                  Időpontot keresek <span aria-hidden="true">→</span>
                 </Link>
                 <a href="#arak" className={styles.secondaryLink}>
                   Árak és vizsgálati csomagok
@@ -202,9 +193,6 @@ export default function ScrollVideo({ videoSrc, poster }) {
               <span className={styles.phaseLabel}>
                 {phase === 0 ? 'Bevezetés' : phase === 1 ? 'Képalkotás' : 'Összegzés'} ({Math.round(progress * 100)}%)
               </span>
-            </div>
-            <div className={styles.scrollHint}>
-              <span>Görgetés vezérelt videó</span>
             </div>
           </div>
         </div>
