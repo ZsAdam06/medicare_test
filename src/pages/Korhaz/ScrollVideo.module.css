@@ -1,0 +1,382 @@
+/* Scroll-driven video szekció stílusai */
+.scrollSection {
+  position: relative;
+  /* 280vh magasság a kényelmes, sima görgetéshez */
+  height: 280vh;
+  background: var(--ink, #071520);
+}
+
+.stickyWrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Finom sötétítő és fókuszáló gradient rétegek */
+.shadeOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 21, 32, 0.94) 0%,
+    rgba(7, 21, 32, 0.72) 45%,
+    rgba(7, 21, 32, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+.radialGlow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(to top, rgba(7, 21, 32, 0.95), transparent);
+  pointer-events: none;
+}
+
+/* Tartalom konténer */
+.contentContainer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 80px;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  max-width: 680px;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+}
+
+/* Váltakozó információs kártyák */
+.card {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 36px 40px;
+  background: rgba(12, 36, 52, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  box-shadow: 0 32px 64px -24px rgba(0, 0, 0, 0.7);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.cardVisible {
+  opacity: 1;
+  transform: translateY(-50%);
+  visibility: visible;
+}
+
+.cardHidden {
+  opacity: 0;
+  transform: translateY(-40%);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Fejléc címke */
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.badgeNumber {
+  font-family: var(--sans, 'Manrope', sans-serif);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--mint, #24d3b4);
+  background: rgba(36, 211, 180, 0.15);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 211, 180, 0.3);
+}
+
+.badgeText {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 236, 0.85);
+}
+
+.liveIndicator {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mint, #24d3b4);
+  background: rgba(36, 211, 180, 0.1);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--mint, #24d3b4);
+  box-shadow: 0 0 10px var(--mint, #24d3b4);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Címek és szövegek */
+.title {
+  margin: 0 0 16px;
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--ivory, #f7f3ec);
+}
+
+.highlight {
+  color: var(--mint, #24d3b4);
+}
+
+.description {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(247, 243, 236, 0.78);
+}
+
+/* Görgetési felhívás */
+.scrollPrompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(247, 243, 236, 0.7);
+}
+
+.mouseIcon {
+  width: 18px;
+  height: 28px;
+  border: 1.5px solid var(--mint, #24d3b4);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mouseWheel {
+  width: 3px;
+  height: 6px;
+  background: var(--mint, #24d3b4);
+  border-radius: 2px;
+  position: absolute;
+  top: 4px;
+  animation: mouseScroll 1.6s infinite ease-in-out;
+}
+
+@keyframes mouseScroll {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* Specifikációk sora (2. fázis) */
+.specsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specValue {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--mint, #24d3b4);
+}
+
+.specLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(247, 243, 236, 0.65);
+}
+
+/* CTA gombok (3. fázis) */
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--mint, #24d3b4);
+  color: var(--ink, #071520);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background: #4ae3c8;
+  transform: translateX(2px);
+}
+
+.secondaryLink {
+  color: rgba(247, 243, 236, 0.8);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.secondaryLink:hover {
+  color: var(--mint, #24d3b4);
+  text-decoration: underline;
+}
+
+/* Alsó sáv a progress barral */
+.statusBar {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  right: 80px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.progressContainer {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--mint, #24d3b4);
+  box-shadow: 0 0 12px var(--mint, #24d3b4);
+  transition: width 0.1s linear;
+}
+
+.statusMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(247, 243, 236, 0.7);
+}
+
+.phaseIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.activeDot {
+  width: 18px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--mint, #24d3b4);
+  box-shadow: 0 0 8px var(--mint, #24d3b4);
+  transition: all 0.3s ease;
+}
+
+.phaseLabel {
+  font-weight: 600;
+  margin-left: 6px;
+  color: rgba(247, 243, 236, 0.85);
+}
+
+.scrollHint {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--mint, #24d3b4);
+}
+
+/* Reszponzív nézetek */
+@media (max-width: 900px) {
+  .contentContainer {
+    padding-inline: 24px;
+  }
+
+  .statusBar {
+    left: 24px;
+    right: 24px;
+    bottom: 20px;
+  }
+
+  .card {
+    padding: 24px 22px;
+  }
+
+  .specsRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .shadeOverlay {
+    background: rgba(7, 21, 32, 0.85);
+  }
+}

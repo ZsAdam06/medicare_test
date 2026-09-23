@@ -18,6 +18,7 @@ import {
   ticker,
 } from '../../data/korhaz'
 import BookingBar from './BookingBar'
+import ScrollVideo from './ScrollVideo'
 import styles from './Korhaz.module.css'
 
 function Header() {
@@ -184,7 +185,11 @@ export default function Korhaz() {
           </div>
         </section>
 
-        <section id="diagnosztika" className={styles.band}>
+        <div id="diagnosztika">
+          <ScrollVideo videoSrc="/media/mri_video.mp4" poster={media.mri} />
+        </div>
+
+        <section className={styles.band}>
           <img className={styles.bandImage} src={media.mri} alt="" loading="lazy" />
           <div className={styles.bandShade} aria-hidden="true" />
           <div className={`${styles.inner} ${styles.bandInner}`}>
