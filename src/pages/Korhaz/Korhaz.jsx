@@ -17,6 +17,7 @@ import {
   specialties,
   ticker,
 } from '../../data/korhaz'
+import BookingBar from './BookingBar'
 import styles from './Korhaz.module.css'
 
 function Header() {
@@ -94,36 +95,12 @@ function Hero() {
         </h1>
         <p className={styles.heroLead}>{hero.lead}</p>
 
-        <form
-          id="foglalas"
-          className={styles.booking}
-          onSubmit={(e) => e.preventDefault()}
-          aria-label="Időpontkeresés"
-        >
-          <div className={styles.bookingField}>
-            <label htmlFor="korhaz-mit">Mit keres?</label>
-            <input id="korhaz-mit" type="text" placeholder="Panasz, vizsgálat vagy orvos" />
-          </div>
-          <div className={styles.bookingField}>
-            <label htmlFor="korhaz-szak">Szakterület</label>
-            <select id="korhaz-szak" defaultValue={hero.specialties[0]}>
-              {hero.specialties.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.bookingField}>
-            <label htmlFor="korhaz-idopont">Időpont</label>
-            <select id="korhaz-idopont" defaultValue={hero.slots[0]}>
-              {hero.slots.map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </div>
-          <button type="submit" className={styles.btnMint}>
-            Időpontot keresek <span aria-hidden="true">→</span>
-          </button>
-        </form>
+        <BookingBar
+          suggestions={hero.searchSuggestions}
+          specialties={hero.specialties}
+          slots={hero.slots}
+        />
+
       </div>
     </section>
   )
