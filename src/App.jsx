@@ -7,6 +7,8 @@ import Landing from './pages/Landing'
 import Compare from './pages/Compare'
 import NotReady from './pages/NotReady'
 import Korhaz from './pages/Korhaz/Korhaz'
+import IdopontKereso from './pages/Korhaz/IdopontKereso'
+import KorhazNotReady from './pages/Korhaz/KorhazNotReady'
 import { COMPARE_PATH } from './data/comparison'
 import { KORHAZ_PATH } from './data/korhaz'
 import { AUDIENCE_PATHS } from './data/routes'
@@ -34,6 +36,8 @@ export default function App() {
         <Routes>
           {/* A kórházi koncepció önálló arculattal, saját fejléccel és lábléccel fut. */}
           <Route path={KORHAZ_PATH} element={<Korhaz />} />
+          <Route path={`${KORHAZ_PATH}/idopontok`} element={<IdopontKereso />} />
+          <Route path={`${KORHAZ_PATH}/*`} element={<KorhazNotReady />} />
           <Route element={<InsuranceLayout />}>
             <Route path={AUDIENCE_PATHS.business} element={<Landing />} />
             <Route path={AUDIENCE_PATHS.private} element={<Landing />} />
@@ -45,3 +49,4 @@ export default function App() {
     </QuoteDialogProvider>
   )
 }
+

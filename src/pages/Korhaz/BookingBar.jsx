@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './BookingBar.module.css'
 
 /** Kattintás a panelen kívül → bezárás. */
@@ -235,9 +236,10 @@ export default function BookingBar({ suggestions, specialties, slots }) {
   const [query, setQuery] = useState('')
   const [specialty, setSpecialty] = useState(specialties[0])
   const [slot, setSlot] = useState(slots[0])
+  const navigate = useNavigate()
 
   return (
-    <form id="foglalas" className={styles.bar} onSubmit={(e) => e.preventDefault()} aria-label="Időpontkeresés">
+    <form id="foglalas" className={styles.bar} onSubmit={(e) => { e.preventDefault(); navigate('/korhaz/idopontok') }} aria-label="Időpontkeresés">
       <SearchField
         label="Mit keres?"
         placeholder="Panasz, vizsgálat vagy orvos"
@@ -250,7 +252,7 @@ export default function BookingBar({ suggestions, specialties, slots }) {
         options={specialties}
         value={specialty}
         onChange={setSpecialty}
-        width={210}
+        width={280}
       />
       <SelectField
         label="Időpont"

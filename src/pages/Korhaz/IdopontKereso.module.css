@@ -1,0 +1,832 @@
+/* IdopontKereso.module.css - Medicare Kórház időpontkereső találati oldal */
+
+.page {
+  --ink: #071520;
+  --ink-2: #0c2434;
+  --ink-3: #123249;
+  --ivory: #f7f3ec;
+  --mint: #24d3b4;
+  --mint-deep: #0a7061;
+  --coral: #ff6b5a;
+  --slate: #82929e;
+  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ink);
+  color: var(--ivory);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+/* ---------- Fejléc (Header) ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 21, 32, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(247, 243, 236, 0.08);
+  padding-block: 18px;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.9;
+}
+
+.logo img {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  color: rgba(247, 243, 236, 0.82);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav a:hover {
+  color: var(--mint);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sos {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 107, 90, 0.6);
+  border-radius: 999px;
+  color: var(--coral);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sos:hover {
+  background: rgba(255, 107, 90, 0.1);
+  border-color: var(--coral);
+}
+
+.sosDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--coral);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.btnBackHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid rgba(36, 211, 180, 0.4);
+  border-radius: 999px;
+  color: var(--mint);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnBackHeader:hover {
+  background: rgba(36, 211, 180, 0.12);
+  border-color: var(--mint);
+  color: #fff;
+}
+
+/* ---------- Főtartalom ---------- */
+.main {
+  flex: 1;
+  padding-block: 36px 80px;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mint);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.backLink:hover {
+  transform: translateX(-4px);
+  color: #58f3d6;
+}
+
+.breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--slate);
+}
+
+.breadcrumbs a {
+  color: var(--slate);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+  color: var(--ivory);
+}
+
+.breadcrumbSeparator {
+  opacity: 0.5;
+}
+
+.breadcrumbCurrent {
+  color: var(--mint);
+  font-weight: 600;
+}
+
+.pageHeader {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mint);
+}
+
+.title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(34px, 4.5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: var(--ivory);
+}
+
+.lead {
+  margin: 0;
+  color: var(--slate);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+/* ---------- Szűrőpanel (Filter Bar) ---------- */
+.filterBar {
+  background: var(--ink-2);
+  border: 1px solid rgba(247, 243, 236, 0.12);
+  border-radius: 18px;
+  padding: 22px 28px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.filterInfoList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+}
+
+.filterItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filterLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--slate);
+}
+
+.filterValue {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ivory);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.filterDivider {
+  width: 1px;
+  height: 38px;
+  background: rgba(247, 243, 236, 0.1);
+}
+
+.filterBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(36, 211, 180, 0.12);
+  border: 1px solid rgba(36, 211, 180, 0.3);
+  color: var(--mint);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.filterBadgeCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Szakterület gyorsszűrők */
+.quickFilters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.quickFilterTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(247, 243, 236, 0.14);
+  background: rgba(247, 243, 236, 0.03);
+  color: rgba(247, 243, 236, 0.85);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  background: rgba(247, 243, 236, 0.1);
+  border-color: rgba(247, 243, 236, 0.3);
+  color: var(--ivory);
+}
+
+.chipActive {
+  background: var(--mint);
+  border-color: var(--mint);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.chipActive:hover {
+  background: #4ae3c8;
+  border-color: #4ae3c8;
+  color: var(--ink);
+}
+
+/* ---------- Találati lista és Kártyák ---------- */
+.resultsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.resultCard {
+  background: var(--ink-2);
+  border: 1px solid rgba(247, 243, 236, 0.1);
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resultCard:hover {
+  border-color: rgba(36, 211, 180, 0.38);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.doctorCol {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 300px;
+}
+
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 2px solid rgba(36, 211, 180, 0.35);
+  background: var(--ink-3);
+  display: block;
+}
+
+.avatarPlaceholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--ink-3);
+  border: 2px solid rgba(36, 211, 180, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--mint);
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--mint);
+  border: 2px solid var(--ink-2);
+}
+
+.doctorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.doctorName {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+}
+
+.specialtyBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: rgba(36, 211, 180, 0.12);
+  border: 1px solid rgba(36, 211, 180, 0.25);
+  color: var(--mint);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  width: fit-content;
+}
+
+.locationText {
+  font-size: 13px;
+  color: var(--slate);
+  margin: 0;
+}
+
+.slotCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.slotLabel {
+  font-size: 11px;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.slotValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ivory);
+}
+
+.slotIcon {
+  color: var(--mint);
+  font-size: 16px;
+}
+
+.slotBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #58f3d6;
+  font-weight: 500;
+}
+
+.slotBadgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 140px;
+}
+
+.priceLabel {
+  font-size: 11px;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.priceValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--ivory);
+  letter-spacing: -0.02em;
+}
+
+.actionCol {
+  display: flex;
+  align-items: center;
+}
+
+.btnBook {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--mint);
+  color: var(--ink);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btnBook:hover {
+  background: #4ae3c8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(36, 211, 180, 0.35);
+}
+
+.btnBook:active {
+  transform: translateY(0);
+}
+
+/* ---------- Foglalási visszajelző modális ---------- */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 13, 20, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modalBox {
+  background: var(--ink-2);
+  border: 1px solid rgba(36, 211, 180, 0.35);
+  border-radius: 24px;
+  padding: 36px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
+  text-align: center;
+}
+
+.modalIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(36, 211, 180, 0.15);
+  border: 1px solid var(--mint);
+  color: var(--mint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 20px;
+}
+
+.modalTitle {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ivory);
+  margin: 0 0 10px;
+}
+
+.modalText {
+  color: var(--slate);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.modalSummaryCard {
+  background: rgba(7, 21, 32, 0.8);
+  border: 1px solid rgba(247, 243, 236, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: left;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modalSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.modalSummaryLabel {
+  color: var(--slate);
+}
+
+.modalSummaryValue {
+  font-weight: 600;
+  color: var(--ivory);
+}
+
+.modalCloseBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--mint);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modalCloseBtn:hover {
+  background: #4ae3c8;
+}
+
+/* ---------- Lábléc (Footer) ---------- */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid rgba(247, 243, 236, 0.08);
+  background: #051019;
+  padding-block: 48px 32px;
+  font-size: 14px;
+}
+
+.footerTop {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.footerBrand img {
+  width: 170px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.footerBrand address {
+  font-style: normal;
+  color: var(--slate);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.footerBrand address span {
+  display: block;
+}
+
+.footerContact a {
+  display: block;
+  color: var(--mint);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.footerContact a:hover {
+  text-decoration: underline;
+}
+
+.footerTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mint);
+  margin: 0 0 16px;
+}
+
+.footerNav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerNav a {
+  color: var(--slate);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerNav a:hover {
+  color: var(--ivory);
+}
+
+.footerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(247, 243, 236, 0.06);
+  padding-top: 24px;
+  color: var(--slate);
+  font-size: 13px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footerBottom a {
+  color: var(--mint);
+  text-decoration: none;
+}
+
+.footerBottom a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Reszponzivitás ---------- */
+@media (max-width: 1024px) {
+  .nav {
+    display: none;
+  }
+  .resultCard {
+    flex-wrap: wrap;
+  }
+  .footerTop {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    padding-inline: 20px;
+  }
+  .filterBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .filterDivider {
+    display: none;
+  }
+  .resultCard {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 20px;
+  }
+  .doctorCol {
+    min-width: 0;
+  }
+  .slotCol,
+  .priceCol {
+    min-width: 0;
+    align-items: flex-start;
+  }
+  .priceCol {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(247, 243, 236, 0.08);
+    padding-top: 12px;
+  }
+  .btnBook {
+    width: 100%;
+  }
+  .footerTop {
+    grid-template-columns: 1fr;
+  }
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

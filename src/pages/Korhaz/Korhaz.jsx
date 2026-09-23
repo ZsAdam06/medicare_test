@@ -41,9 +41,9 @@ function Header() {
             <span className={styles.sosDot} aria-hidden="true" />
             Sürgősségi 0–24
           </a>
-          <a className={styles.btnMint} href="#foglalas">
+          <Link className={styles.btnMint} to="/korhaz/idopontok">
             Időpontfoglalás
-          </a>
+          </Link>
         </div>
       </div>
     </header>
@@ -168,7 +168,7 @@ export default function Korhaz() {
             <ul className={styles.specialtyList}>
               {specialties.items.map((item) => (
                 <li key={item.n}>
-                  <a href="#foglalas">
+                  <a href="/korhaz/idopontok">
                     <span className={styles.specialtyNum}>{item.n}</span>
                     <span className={styles.specialtyBody}>
                       <span className={styles.specialtyName}>{item.name}</span>
@@ -195,7 +195,7 @@ export default function Korhaz() {
               ))}
             </h2>
             <p className={styles.bandText}>{diagnostics.text}</p>
-            <a className={styles.btnGhostMint} href="#foglalas">
+            <a className={styles.btnGhostMint} href="/korhaz/idopontok">
               {diagnostics.cta} <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -212,7 +212,7 @@ export default function Korhaz() {
                   ))}
                 </h2>
               </div>
-              <a className={styles.linkMint} href="#foglalas">
+              <a className={styles.linkMint} href="/korhaz/idopontok">
                 {packages.link} <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -232,7 +232,7 @@ export default function Korhaz() {
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
-                    <a className={styles.packageCta} href="#foglalas">
+                    <a className={styles.packageCta} href="/korhaz/idopontok">
                       Időpontot foglalok <span aria-hidden="true">→</span>
                     </a>
                   </article>
@@ -249,7 +249,7 @@ export default function Korhaz() {
                 <p className={styles.eyebrowDark}>{doctors.eyebrow}</p>
                 <h2 className={styles.display}>{doctors.title}</h2>
               </div>
-              <a className={styles.linkDark} href="#foglalas">
+              <a className={styles.linkDark} href="/korhaz/idopontok">
                 {doctors.link} <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -266,7 +266,7 @@ export default function Korhaz() {
                     <p className={styles.doctorField}>{doctor.field}</p>
                     <a
                       className={`${styles.doctorLink} ${openDoctor === i ? styles.doctorLinkOn : ''}`}
-                      href="#foglalas"
+                      href="/korhaz/idopontok"
                     >
                       Időpont keresése <span aria-hidden="true">→</span>
                     </a>
@@ -317,7 +317,7 @@ export default function Korhaz() {
                 <h2 className={styles.displayLight}>{cta.title}</h2>
                 <p className={styles.bandText}>{cta.text}</p>
                 <div className={styles.ctaButtons}>
-                  <a className={styles.btnMint} href="#foglalas">
+                  <a className={styles.btnMint} href="/korhaz/idopontok">
                     Időpontfoglalás <span aria-hidden="true">→</span>
                   </a>
                   <a
@@ -354,7 +354,7 @@ export default function Korhaz() {
                 <ul>
                   {column.links.map((link) => (
                     <li key={link}>
-                      <a href="#foglalas">{link}</a>
+                      <a href="/korhaz/idopontok">{link}</a>
                     </li>
                   ))}
                 </ul>

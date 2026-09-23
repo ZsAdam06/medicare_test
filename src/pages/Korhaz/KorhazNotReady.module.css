@@ -1,0 +1,248 @@
+/* Kórház – Nem elérhető / Fejlesztés alatt oldal stílusai */
+.page {
+  --ink: #071520;
+  --ink-2: #0c2434;
+  --ivory: #f7f3ec;
+  --mint: #24d3b4;
+  --mint-hover: #4ae3c8;
+  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(12, 36, 52, 0.9) 0%, rgba(7, 21, 32, 0.95) 70%, #071520 100%),
+    radial-gradient(circle at 50% 45%, rgba(36, 211, 180, 0.06) 0%, transparent 60%);
+  color: var(--ivory);
+  font-family: var(--sans);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Finom háttérfény a központi blokk mögött */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(36, 211, 180, 0.12) 0%, rgba(12, 36, 52, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(48px);
+  z-index: 0;
+}
+
+/* Fejléc a logóval */
+.header {
+  width: 100%;
+  max-width: 1440px;
+  padding: 36px 32px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.logoLink:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.logo {
+  height: 29px;
+  width: auto;
+  display: block;
+}
+
+/* Főtartalom: középre rendezett kártya */
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px 20px;
+  z-index: 1;
+}
+
+.card {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(12, 36, 52, 0.55);
+  border: 1px solid rgba(247, 243, 236, 0.1);
+  border-radius: 28px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(36, 211, 180, 0.08) inset;
+}
+
+/* Ikon buborék */
+.iconWrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(36, 211, 180, 0.1);
+  border: 1px solid rgba(36, 211, 180, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 28px rgba(36, 211, 180, 0.18);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover .iconWrapper {
+  transform: rotate(20deg) scale(1.05);
+  border-color: rgba(36, 211, 180, 0.5);
+}
+
+.icon {
+  font-size: 32px;
+  line-height: 1;
+  display: inline-block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Főcím */
+.title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ivory);
+  margin: 0 0 16px;
+}
+
+/* Alcím */
+.subtitle {
+  font-family: var(--sans);
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.6;
+  color: rgba(247, 243, 236, 0.75);
+  margin: 0 0 32px;
+  max-width: 480px;
+}
+
+/* Gomb */
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btnMint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--mint);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 16px rgba(36, 211, 180, 0.25);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btnMint:hover {
+  background: var(--mint-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(36, 211, 180, 0.4);
+}
+
+.btnMint:active {
+  transform: translateY(0);
+}
+
+.btnMint:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 3px;
+}
+
+.btnArrow {
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btnMint:hover .btnArrow {
+  transform: translateX(-3px);
+}
+
+/* Lábléc */
+.footer {
+  width: 100%;
+  padding: 24px 32px;
+  text-align: center;
+  z-index: 1;
+}
+
+.footerText {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(247, 243, 236, 0.4);
+  letter-spacing: 0.02em;
+}
+
+/* Reszponzív finomhangolás */
+@media (max-width: 640px) {
+  .header {
+    padding: 24px 20px 12px;
+  }
+
+  .card {
+    padding: 36px 20px;
+    border-radius: 20px;
+  }
+
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+
+  .icon {
+    font-size: 26px;
+  }
+
+  .btnMint {
+    width: 100%;
+    justify-content: center;
+  }
+}
