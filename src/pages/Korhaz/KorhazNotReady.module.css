@@ -157,6 +157,32 @@
 .actions {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ivory, #f7f3ec);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(247, 243, 236, 0.28);
+  transition: all 0.2s ease;
+}
+
+.btnGhost:hover {
+  background: rgba(247, 243, 236, 0.1);
+  border-color: rgba(247, 243, 236, 0.6);
+  transform: translateY(-2px);
 }
 
 .btnMint {

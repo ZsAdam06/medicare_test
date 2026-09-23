@@ -40,6 +40,9 @@ export default function KorhazNotReady() {
               <span className={styles.btnArrow} aria-hidden="true">←</span>
               Vissza a főoldalra
             </Link>
+            <Link to="/korhaz/idopontok" className={styles.btnGhost}>
+              Időpontot keresek <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </main>

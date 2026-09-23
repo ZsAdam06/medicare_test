@@ -338,11 +338,20 @@ export default function Korhaz() {
               <nav key={column.title} aria-label={column.title}>
                 <p className={styles.footerTitle}>{column.title}</p>
                 <ul>
-                  {column.links.map((link) => (
-                    <li key={link}>
-                      <a href="/korhaz/idopontok">{link}</a>
-                    </li>
-                  ))}
+                  {column.links.map((item) => {
+                    const label = typeof item === 'string' ? item : item.label
+                    const to = typeof item === 'string' ? '/korhaz/fejlesztes-alatt' : item.to
+                    const isHash = to.includes('#')
+                    return (
+                      <li key={label}>
+                        {isHash ? (
+                          <a href={to}>{label}</a>
+                        ) : (
+                          <Link to={to}>{label}</Link>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </nav>
             ))}
@@ -363,7 +372,18 @@ export default function Korhaz() {
           <div className={styles.footerBottom}>
             <p>© 2026 Medicare Magánkórház és Klinika · Koncepció demó, nem hivatalos oldal</p>
             <p>
-              {footer.legal} · <Link to="/">Biztosítói koncepció</Link>
+              {Array.isArray(footer.legal) ? (
+                footer.legal.map((item, idx) => (
+                  <span key={item.label}>
+                    <Link to={item.to}>{item.label}</Link>
+                    {idx < footer.legal.length - 1 ? ' · ' : ''}
+                  </span>
+                ))
+              ) : (
+                footer.legal
+              )}
+              {' · '}
+              <Link to="/">Biztosítói koncepció</Link>
             </p>
           </div>
         </div>

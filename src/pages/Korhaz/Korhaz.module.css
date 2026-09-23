@@ -630,7 +630,8 @@
 
 .doctorGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* a kártyák száma változhat, ezért rugalmas oszlopok */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   margin: 0;
   padding: 0;

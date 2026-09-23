@@ -6,8 +6,7 @@ import csapat from '../assets/korhaz/csapat.jpg'
 import konzultacio from '../assets/hero/hero-doctor-1000.jpg'
 import tanczos from '../assets/korhaz/dr-tanczos-tamas.png'
 import karpati from '../assets/korhaz/dr-karpati-adel.jpg'
-import szekeres from '../assets/korhaz/dr-szekeres-gabor.jpg'
-import szeghy from '../assets/korhaz/dr-szeghy-szabolcs.jpg'
+import maszler from '../assets/korhaz/dr-maszler-hedvig.jpg'
 import logoWhite from '../assets/korhaz/logo-feher.png'
 
 export const KORHAZ_PATH = '/korhaz'
@@ -176,8 +175,9 @@ export const doctors = {
   items: [
     { name: 'Dr. Tánczos Tamás', field: 'Traumatológia', photo: tanczos },
     { name: 'Dr. Kárpáti Adél', field: 'Aneszteziológia', photo: karpati },
-    { name: 'Dr. Szekeres Gábor', field: 'Aneszteziológia', photo: szekeres },
-    { name: 'Dr. Szeghy Szabolcs', field: 'Aneszteziológia', photo: szeghy },
+    { name: 'Dr. Maszler Hedvig', field: 'Aneszteziológia', photo: maszler },
+    // A negyedik fotó (orvos-azonositas-alatt.jpg) addig nem kerül ki,
+    // amíg nem tisztázzuk, ki látható rajta.
   ],
 }
 
@@ -219,11 +219,23 @@ export const footer = {
   columns: [
     {
       title: 'Ellátás',
-      links: ['Szakrendelések', 'Diagnosztika', 'Laborvizsgálatok', 'Műtétek', 'Sürgősségi Centrum'],
+      links: [
+        { label: 'Szakrendelések', to: '/korhaz/idopontok' },
+        { label: 'Diagnosztika', to: '/korhaz#diagnosztika' },
+        { label: 'Laborvizsgálatok', to: '/korhaz/fejlesztes-alatt' },
+        { label: 'Műtétek', to: '/korhaz/fejlesztes-alatt' },
+        { label: 'Sürgősségi Centrum', to: '/korhaz/fejlesztes-alatt' },
+      ],
     },
     {
       title: 'Információ',
-      links: ['Orvosok', 'Árak', 'Egészség A-Z', 'Kapcsolat', 'Betegjogi tájékoztató'],
+      links: [
+        { label: 'Orvosok', to: '/korhaz#orvosok' },
+        { label: 'Árak', to: '/korhaz#arak' },
+        { label: 'Egészség A-Z', to: '/korhaz/fejlesztes-alatt' },
+        { label: 'Kapcsolat', to: '/korhaz/fejlesztes-alatt' },
+        { label: 'Betegjogi tájékoztató', to: '/korhaz/fejlesztes-alatt' },
+      ],
     },
   ],
   group: [
@@ -232,5 +244,9 @@ export const footer = {
     'medicarediagnosztika.hu',
     'medicarebiztosito.hu',
   ],
-  legal: 'Adatkezelés · Betegjogok · Privacy',
+  legal: [
+    { label: 'Adatkezelés', to: '/korhaz/fejlesztes-alatt' },
+    { label: 'Betegjogok', to: '/korhaz/fejlesztes-alatt' },
+    { label: 'Privacy', to: '/korhaz/fejlesztes-alatt' },
+  ],
 }
