@@ -2,6 +2,8 @@ import heroPoster from '../assets/korhaz/hero-poszter.jpg'
 import mri from '../assets/korhaz/mri.jpg'
 import folyoso from '../assets/korhaz/folyoso.jpg'
 import csapat from '../assets/korhaz/csapat.jpg'
+// a biztosítói nyitóoldal hero-fotója – a szakterületek szekcióban
+import konzultacio from '../assets/hero/hero-doctor-1000.jpg'
 import tanczos from '../assets/korhaz/dr-tanczos-tamas.png'
 import karpati from '../assets/korhaz/dr-karpati-adel.jpg'
 import szekeres from '../assets/korhaz/dr-szekeres-gabor.jpg'
@@ -10,7 +12,7 @@ import logoWhite from '../assets/korhaz/logo-feher.png'
 
 export const KORHAZ_PATH = '/korhaz'
 
-export const media = { heroPoster, mri, folyoso, csapat, logoWhite }
+export const media = { heroPoster, mri, folyoso, csapat, konzultacio, logoWhite }
 
 /** A hero mögötti videó helye: public/media/korhaz-hero.mp4 (a poszterkép fentről jön). */
 export const heroVideo = '/media/korhaz-hero.mp4'

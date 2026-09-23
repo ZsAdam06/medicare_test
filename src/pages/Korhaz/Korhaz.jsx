@@ -159,8 +159,8 @@ export default function Korhaz() {
               <p className={styles.bodyMuted}>{specialties.text}</p>
               <img
                 className={styles.specialtiesPhoto}
-                src={media.csapat}
-                alt="A Medicare ápolói a kórház osztályán"
+                src={media.konzultacio}
+                alt="Orvos egy leletet mutat a páciensnek a rendelőben"
                 loading="lazy"
               />
             </div>
