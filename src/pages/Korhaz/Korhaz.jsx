@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   claim,
   contact,
-  cta,
-  diagnostics,
-  doctors,
+  cta,  doctors,
   footer,
   hero,
   heroVideo,
@@ -188,23 +186,6 @@ export default function Korhaz() {
         <div id="diagnosztika">
           <ScrollVideo videoSrc="/media/mri_video.mp4" poster={media.mri} />
         </div>
-
-        <section className={styles.band}>
-          <img className={styles.bandImage} src={media.mri} alt="" loading="lazy" />
-          <div className={styles.bandShade} aria-hidden="true" />
-          <div className={`${styles.inner} ${styles.bandInner}`}>
-            <p className={styles.eyebrowMint}>{diagnostics.eyebrow}</p>
-            <h2 className={styles.displayLight}>
-              {diagnostics.title.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </h2>
-            <p className={styles.bandText}>{diagnostics.text}</p>
-            <a className={styles.btnGhostMint} href="/korhaz/idopontok">
-              {diagnostics.cta} <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </section>
 
         <section id="arak" className={styles.packages}>
           <div className={styles.inner}>
