@@ -252,7 +252,13 @@ export default function BookingBar({ suggestions, specialties, slots }) {
         onChange={setSpecialty}
         width={210}
       />
-      <SlotField label="Időpont" options={slots} value={slot} onChange={setSlot} />
+      <SelectField
+        label="Időpont"
+        options={slots}
+        value={slot}
+        onChange={setSlot}
+        width={200}
+      />
       <button type="submit" className={styles.submit}>
         Időpontot keresek <span aria-hidden="true">→</span>
       </button>
